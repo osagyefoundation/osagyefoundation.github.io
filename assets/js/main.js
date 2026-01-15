@@ -615,6 +615,200 @@ console.log(
       successMessage: '<span class="text-success">You are subscribed!</span>',
     });
 
+    initLeadershipRotation();
+
+    function initLeadershipRotation() {
+      var rotator = document.querySelector('[data-rotator="executive"]');
+      if (!rotator) {
+        return;
+      }
+
+      var flip = rotator.querySelector(".leadership-flip");
+      var front = rotator.querySelector(".leadership-face-front");
+      var back = rotator.querySelector(".leadership-face-back");
+
+      if (!flip || !front || !back) {
+        return;
+      }
+
+      var executives = [
+        {
+          name: "Thomas Raphael Affare",
+          title: "Executive Director & CEO",
+          summary: "Steers strategy and partnerships for the foundation.",
+          image: "assets/images/wenchi1/execdirector.png",
+        },
+        {
+          name: "Person3",
+          title: "Education Consultant",
+          summary: "Guides academic initiatives and learning partnerships.",
+          image: "assets/images/wenchi1/patronandteamonly.jpg",
+        },
+        {
+          name: "Person4",
+          title: "Health Consultant",
+          summary: "Strengthens community health programming.",
+          image: "assets/images/wenchi1/execdirector.png",
+        },
+        {
+          name: "Person5",
+          title: "Tourism & Culture Consultant",
+          summary: "Champions cultural heritage experiences.",
+          image: "assets/images/wenchi1/execdirector.png",
+        },
+        {
+          name: "Person6",
+          title: "Technology & ICT Consultant",
+          summary: "Leads innovation and digital transformation projects.",
+          image: "assets/images/wenchi1/patronandteam.jpg",
+        },
+        {
+          name: "Person7",
+          title: "Construction & Projects Consultant",
+          summary: "Oversees infrastructure and capital projects.",
+          image: "assets/images/wenchi1/execdirector.png",
+        },
+        {
+          name: "Person8",
+          title: "Board Member",
+          summary: "Supports governance and strategic oversight.",
+          image: "assets/images/wenchi1/patronandteam.jpg",
+        },
+        {
+          name: "Person9",
+          title: "Board Member",
+          summary: "Advances stakeholder engagement and governance.",
+          image: "assets/images/wenchi1/execdirector.png",
+        },
+        {
+          name: "Person10",
+          title: "Board Member",
+          summary: "Provides advisory support to the board.",
+          image: "assets/images/wenchi1/execdirector.png",
+        },
+        {
+          name: "Person11",
+          title: "Director of Finance",
+          summary: "Ensures fiscal stewardship and accountability.",
+          image: "assets/images/wenchi1/execdirector.png",
+        },
+      ];
+
+      var currentIndex = 0;
+      var showingFront = true;
+      var rotationInterval = 6000;
+      var rotationTimerId;
+      var isAnimating = false;
+
+      rotator.setAttribute("role", "button");
+      rotator.setAttribute("tabindex", "0");
+
+      function populateFace(faceElement, executive) {
+        if (!faceElement || !executive) {
+          return;
+        }
+
+        var photo = faceElement.querySelector(".leadership-photo img");
+        if (photo) {
+          photo.src = executive.image;
+          photo.alt = "Portrait of " + executive.name;
+        }
+
+        var name = faceElement.querySelector(".leadership-name");
+        if (name) {
+          name.textContent = executive.name;
+        }
+
+        var title = faceElement.querySelector(".leadership-title");
+        if (title) {
+          title.textContent = executive.title;
+        }
+
+        var summary = faceElement.querySelector(".leadership-summary");
+        if (summary) {
+          summary.textContent = executive.summary;
+        }
+      }
+
+      function getVisibleFace() {
+        return showingFront ? front : back;
+      }
+
+      function getHiddenFace() {
+        return showingFront ? back : front;
+      }
+
+      function updateAriaStates() {
+        if (!front || !back) {
+          return;
+        }
+
+        front.setAttribute("aria-hidden", showingFront ? "false" : "true");
+        back.setAttribute("aria-hidden", showingFront ? "true" : "false");
+      }
+
+      function updateHeight(referenceFace) {
+        if (!flip || !referenceFace) {
+          return;
+        }
+
+        flip.style.height = referenceFace.offsetHeight + "px";
+      }
+
+      function scheduleNext() {
+        clearTimeout(rotationTimerId);
+        rotationTimerId = window.setTimeout(function () {
+          advanceRotation();
+        }, rotationInterval);
+      }
+
+      function advanceRotation() {
+        if (isAnimating) {
+          return;
+        }
+
+        clearTimeout(rotationTimerId);
+        isAnimating = true;
+
+        var nextIndex = (currentIndex + 1) % executives.length;
+        var incomingFace = getHiddenFace();
+
+        populateFace(incomingFace, executives[nextIndex]);
+        updateHeight(incomingFace);
+
+        rotator.classList.toggle("is-flipped");
+        showingFront = !showingFront;
+        updateAriaStates();
+        currentIndex = nextIndex;
+      }
+
+      flip.addEventListener("transitionend", function (event) {
+        if (event.propertyName === "transform") {
+          updateHeight(getVisibleFace());
+          isAnimating = false;
+          scheduleNext();
+        }
+      });
+
+      rotator.addEventListener("click", function (event) {
+        event.preventDefault();
+        advanceRotation();
+      });
+
+      rotator.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          advanceRotation();
+        }
+      });
+
+      populateFace(front, executives[currentIndex]);
+      populateFace(back, executives[(currentIndex + 1) % executives.length]);
+      updateHeight(front);
+      updateAriaStates();
+      scheduleNext();
+    }
+
     /* ---------------------------------------------- /*
          * Google Map
          /* ---------------------------------------------- */
