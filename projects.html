@@ -11,9 +11,9 @@
 		-->
   <title>Projects | Osagyefo Ampem Foundation</title>
   <!--  
-		Favicons
-		=============================================
-		-->
+    Favicons
+    =============================================
+    -->
   <link rel="apple-touch-icon" sizes="57x57" href="assets/images/favicons/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="assets/images/favicons/apple-icon-60x60.png">
   <link rel="apple-touch-icon" sizes="72x72" href="assets/images/favicons/apple-icon-72x72.png">
@@ -54,115 +54,68 @@
     /* Projects grid sizing + hover spotlight */
     .projects-grid {
       list-style: none;
-      margin: -15px;
+      margin: 32px auto 0;
       padding: 0;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: stretch;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 32px;
+      max-width: 1400px;
     }
 
     .projects-grid .work-item {
-      flex: 0 1 calc(33.333% - 30px);
-      max-width: calc(33.333% - 30px);
-      margin: 15px;
-      border-radius: 12px;
+      border-radius: 18px;
       overflow: hidden;
-      min-height: 280px;
-      display: flex;
       position: relative;
-      background: #0f1a1c;
-      box-shadow: 0 12px 30px rgba(4, 7, 9, 0.35);
-      transition: flex-basis 0.55s cubic-bezier(0.19, 1, 0.22, 1),
-        max-width 0.55s cubic-bezier(0.19, 1, 0.22, 1),
-        min-height 0.55s cubic-bezier(0.19, 1, 0.22, 1),
-        box-shadow 0.35s ease;
-      will-change: flex-basis, max-width, min-height;
+      background: #040b0c;
+      box-shadow: 0 12px 28px rgba(3, 8, 12, 0.45);
+      transition: transform 0.25s ease;
+    }
+
+    .projects-grid .work-item:hover {
+      transform: translateY(-4px);
     }
 
     .projects-grid .work-item a {
-      display: flex;
-      flex-direction: column;
+      display: block;
       height: 100%;
-    }
-
-    .projects-grid .work-item.expanded {
-      flex-basis: calc(60% - 30px);
-      max-width: calc(60% - 30px);
-      min-height: 420px;
-      box-shadow: 0 24px 50px rgba(5, 9, 12, 0.5);
-      z-index: 2;
+      color: inherit;
     }
 
     .projects-grid .work-image {
-      flex: 1;
+      width: 100%;
       position: relative;
       overflow: hidden;
+      background: #000;
     }
 
-    .projects-grid .work-image:after,
-    .projects-grid .work-image:before {
-      content: none !important;
+    .projects-grid .work-image::before {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
     }
 
     .projects-grid .work-image img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transform: scale3d(1, 1, 1);
-      transform-origin: center;
-      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-      will-change: transform;
+      transition: transform 0.45s ease, filter 0.45s ease;
     }
 
-    .projects-grid .work-item.expanded .work-image img {
-      transform: scale3d(1.08, 1.08, 1);
-    }
-
-    .projects-grid .work-caption {
-      padding: 16px;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-    }
-
-    .projects-grid .work-item.expanded .work-caption {
-      opacity: 0;
+    .projects-grid .work-item:hover .work-image img {
+      transform: scale(1.05);
+      filter: saturate(1.05);
     }
 
     .projects-grid .work-item.is-filtered-out {
-      flex-basis: 0 !important;
-      max-width: 0 !important;
-      margin: 0 !important;
-      min-height: 0 !important;
-      opacity: 0;
-      pointer-events: none;
-      box-shadow: none;
+      display: none !important;
     }
 
-    @media (max-width: 1399px) {
-      .projects-grid .work-item {
-        flex-basis: calc(50% - 30px);
-        max-width: calc(50% - 30px);
-      }
-
-      .projects-grid .work-item.expanded {
-        flex-basis: calc(100% - 30px);
-        max-width: calc(100% - 30px);
-      }
-    }
-
-    @media (max-width: 767px) {
-
+    @media (max-width: 575px) {
       .projects-grid {
-        margin: -12px 0;
-      }
-
-      .projects-grid .work-item,
-      .projects-grid .work-item.expanded {
-        flex-basis: 100%;
-        max-width: 100%;
-        margin: 12px 0;
-        min-height: 230px;
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -212,7 +165,7 @@
         <div class="container">
           <div class="row scroll-reveal">
             <div class="col-sm-12">
-              <div class="works-filter font-alt align-center" id="filters">
+              <div class="works-filter font-alt align-center" id="projectFilters">
                 <a href="#" class="active" data-filter="*">All</a>
                 <a href="#" data-filter=".filter-education">Education</a>
                 <a href="#" data-filter=".filter-health">Health</a>
@@ -225,49 +178,33 @@
           </div>
           <div class="row">
             <div class="col-sm-12">
-              <ul class="works-grid works-hover-w scroll-reveal projects-grid" id="works-grid">
+              <ul class="works-grid works-hover-w scroll-reveal projects-grid" id="works-grid" data-static-grid="true">
                 <li class="work-item filter-health">
                   <a href="assets/images/gallery/wenchi/healthcare/health.jpg" target="_blank"
                     rel="noopener noreferrer">
                     <div class="work-image"><img src="assets/images/gallery/wenchi/healthcare/health.jpg"
-                        alt="Community health outreach" loading="lazy" /></div>
-                    <div class="work-caption font-alt">
-                      <h3 class="work-title">Community Health Outreach</h3>
-                      <div class="work-descr">Health Care</div>
-                    </div>
+                        alt="Community health outreach" /></div>
                   </a>
                 </li>
                 <li class="work-item filter-water">
                   <a href="assets/images/gallery/wenchi/sanitation_and_water/_MG_3358.jpg" target="_blank"
                     rel="noopener noreferrer">
                     <div class="work-image"><img src="assets/images/gallery/wenchi/sanitation_and_water/_MG_3358.jpg"
-                        alt="Construction of rural water system" loading="lazy" /></div>
-                    <div class="work-caption font-alt">
-                      <h3 class="work-title">Rural Water System</h3>
-                      <div class="work-descr">Water &amp; Sanitation</div>
-                    </div>
+                        alt="Construction of rural water system" /></div>
                   </a>
                 </li>
                 <li class="work-item filter-water">
                   <a href="assets/images/gallery/wenchi/sanitation_and_water/_MG_3404.jpg" target="_blank"
                     rel="noopener noreferrer">
                     <div class="work-image"><img src="assets/images/gallery/wenchi/sanitation_and_water/_MG_3404.jpg"
-                        alt="Community sanitation sensitization" loading="lazy" /></div>
-                    <div class="work-caption font-alt">
-                      <h3 class="work-title">Sanitation Sensitization</h3>
-                      <div class="work-descr">Water &amp; Sanitation</div>
-                    </div>
+                        alt="Community sanitation sensitization" /></div>
                   </a>
                 </li>
                 <li class="work-item filter-water">
                   <a href="assets/images/gallery/wenchi/sanitation_and_water/_MG_3430.jpg" target="_blank"
                     rel="noopener noreferrer">
                     <div class="work-image"><img src="assets/images/gallery/wenchi/sanitation_and_water/_MG_3430.jpg"
-                        alt="Clean water infrastructure" loading="lazy" /></div>
-                    <div class="work-caption font-alt">
-                      <h3 class="work-title">Clean Water Infrastructure</h3>
-                      <div class="work-descr">Water &amp; Sanitation</div>
-                    </div>
+                        alt="Clean water infrastructure" /></div>
                   </a>
                 </li>
                 <li class="work-item filter-water">
@@ -275,11 +212,7 @@
                     rel="noopener noreferrer">
                     <div class="work-image"><img
                         src="assets/images/gallery/wenchi/sanitation_and_water/IMG-20241112-WA0015.jpg"
-                        alt="Water access installation" loading="lazy" /></div>
-                    <div class="work-caption font-alt">
-                      <h3 class="work-title">Water Access Upgrade</h3>
-                      <div class="work-descr">Water &amp; Sanitation</div>
-                    </div>
+                        alt="Water access installation" /></div>
                   </a>
                 </li>
                 <li class="work-item filter-water">
@@ -287,143 +220,91 @@
                     rel="noopener noreferrer">
                     <div class="work-image"><img
                         src="assets/images/gallery/wenchi/sanitation_and_water/IMG-20241112-WA0020.jpg"
-                        alt="Community borehole maintenance" loading="lazy" /></div>
-                    <div class="work-caption font-alt">
-                      <h3 class="work-title">Borehole Maintenance</h3>
-                      <div class="work-descr">Water &amp; Sanitation</div>
-                    </div>
+                        alt="Community borehole maintenance" /></div>
                   </a>
                 </li>
                 <li class="work-item filter-tourism">
                   <a href="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0514.jpg" target="_blank"
                     rel="noopener noreferrer">
                     <div class="work-image"><img src="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0514.jpg"
-                        alt="Cultural drumming display" loading="lazy" /></div>
-                    <div class="work-caption font-alt">
-                      <h3 class="work-title">Cultural Drumline</h3>
-                      <div class="work-descr">Tourism, Culture &amp; Heritage</div>
-                    </div>
+                        alt="Cultural drumming display" /></div>
                   </a>
                 </li>
                 <li class="work-item filter-tourism">
                   <a href="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0599.jpg" target="_blank"
                     rel="noopener noreferrer">
                     <div class="work-image"><img src="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0599.jpg"
-                        alt="Heritage parade" loading="lazy" /></div>
-                    <div class="work-caption font-alt">
-                      <h3 class="work-title">Heritage Parade</h3>
-                      <div class="work-descr">Tourism, Culture &amp; Heritage</div>
-                    </div>
+                        alt="Heritage parade" /></div>
                   </a>
                 </li>
                 <li class="work-item filter-tourism">
                   <a href="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0662.jpg" target="_blank"
                     rel="noopener noreferrer">
                     <div class="work-image"><img src="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0662.jpg"
-                        alt="Community procession" loading="lazy" /></div>
-                    <div class="work-caption font-alt">
-                      <h3 class="work-title">Community Procession</h3>
-                      <div class="work-descr">Tourism, Culture &amp; Heritage</div>
-                    </div>
+                        alt="Community procession" /></div>
                   </a>
                 </li>
                 <li class="work-item filter-tourism">
                   <a href="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0725-2.jpg" target="_blank"
                     rel="noopener noreferrer">
                     <div class="work-image"><img src="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0725-2.jpg"
-                        alt="Royal gathering in Wenchi" loading="lazy" /></div>
-                    <div class="work-caption font-alt">
-                      <h3 class="work-title">Royal Gathering</h3>
-                      <div class="work-descr">Tourism, Culture &amp; Heritage</div>
-                    </div>
+                        alt="Royal gathering in Wenchi" /></div>
                   </a>
                 </li>
                 <li class="work-item filter-entrepreneurship">
                   <a href="assets/images/gallery/wenchi/wheels_for_change/_MG_8395.jpg" target="_blank"
                     rel="noopener noreferrer">
                     <div class="work-image"><img src="assets/images/gallery/wenchi/wheels_for_change/_MG_8395.jpg"
-                        alt="Wheelchair donation line-up" loading="lazy" /></div>
-                    <div class="work-caption font-alt">
-                      <h3 class="work-title">Wheels for Change Logistics</h3>
-                      <div class="work-descr">Entrepreneurship &amp; Youth Empowerment</div>
-                    </div>
+                        alt="Wheelchair donation line-up" /></div>
                   </a>
                 </li>
                 <li class="work-item filter-entrepreneurship">
                   <a href="assets/images/gallery/wenchi/wheels_for_change/_MG_8396.jpg" target="_blank"
                     rel="noopener noreferrer">
                     <div class="work-image"><img src="assets/images/gallery/wenchi/wheels_for_change/_MG_8396.jpg"
-                        alt="Wheelchair assembly" loading="lazy" /></div>
-                    <div class="work-caption font-alt">
-                      <h3 class="work-title">Mobility Assembly</h3>
-                      <div class="work-descr">Entrepreneurship &amp; Youth Empowerment</div>
-                    </div>
+                        alt="Wheelchair assembly" /></div>
                   </a>
                 </li>
                 <li class="work-item filter-entrepreneurship">
                   <a href="assets/images/gallery/wenchi/wheels_for_change/_MG_8515.jpg" target="_blank"
                     rel="noopener noreferrer">
                     <div class="work-image"><img src="assets/images/gallery/wenchi/wheels_for_change/_MG_8515.jpg"
-                        alt="Beneficiaries testing wheelchairs" loading="lazy" /></div>
-                    <div class="work-caption font-alt">
-                      <h3 class="work-title">Mobility Training</h3>
-                      <div class="work-descr">Entrepreneurship &amp; Youth Empowerment</div>
-                    </div>
+                        alt="Beneficiaries testing wheelchairs" /></div>
                   </a>
                 </li>
                 <li class="work-item filter-entrepreneurship">
                   <a href="assets/images/gallery/wenchi/wheels_for_change/_MG_8516.jpg" target="_blank"
                     rel="noopener noreferrer">
                     <div class="work-image"><img src="assets/images/gallery/wenchi/wheels_for_change/_MG_8516.jpg"
-                        alt="Wheelchair beneficiary smiles" loading="lazy" /></div>
-                    <div class="work-caption font-alt">
-                      <h3 class="work-title">Mobility Empowerment</h3>
-                      <div class="work-descr">Entrepreneurship &amp; Youth Empowerment</div>
-                    </div>
+                        alt="Wheelchair beneficiary smiles" /></div>
                   </a>
                 </li>
                 <li class="work-item filter-entrepreneurship">
                   <a href="assets/images/gallery/wenchi/wheels_for_change/_MG_8536.jpg" target="_blank"
                     rel="noopener noreferrer">
                     <div class="work-image"><img src="assets/images/gallery/wenchi/wheels_for_change/_MG_8536.jpg"
-                        alt="Wheelchair fleet" loading="lazy" /></div>
-                    <div class="work-caption font-alt">
-                      <h3 class="work-title">Mobility Fleet</h3>
-                      <div class="work-descr">Entrepreneurship &amp; Youth Empowerment</div>
-                    </div>
+                        alt="Wheelchair fleet" /></div>
                   </a>
                 </li>
                 <li class="work-item filter-entrepreneurship">
                   <a href="assets/images/gallery/wenchi/wheels_for_change/_MG_8544.jpg" target="_blank"
                     rel="noopener noreferrer">
                     <div class="work-image"><img src="assets/images/gallery/wenchi/wheels_for_change/_MG_8544.jpg"
-                        alt="Community receiving mobility devices" loading="lazy" /></div>
-                    <div class="work-caption font-alt">
-                      <h3 class="work-title">Community Distribution</h3>
-                      <div class="work-descr">Entrepreneurship &amp; Youth Empowerment</div>
-                    </div>
+                        alt="Community receiving mobility devices" /></div>
                   </a>
                 </li>
                 <li class="work-item filter-entrepreneurship">
                   <a href="assets/images/gallery/wenchi/wheels_for_change/_MG_8550.jpg" target="_blank"
                     rel="noopener noreferrer">
                     <div class="work-image"><img src="assets/images/gallery/wenchi/wheels_for_change/_MG_8550.jpg"
-                        alt="Wheelchair usage demo" loading="lazy" /></div>
-                    <div class="work-caption font-alt">
-                      <h3 class="work-title">Mobility Demo</h3>
-                      <div class="work-descr">Entrepreneurship &amp; Youth Empowerment</div>
-                    </div>
+                        alt="Wheelchair usage demo" /></div>
                   </a>
                 </li>
                 <li class="work-item filter-entrepreneurship">
                   <a href="assets/images/gallery/wenchi/wheels_for_change/_MG_8568.jpg" target="_blank"
                     rel="noopener noreferrer">
                     <div class="work-image"><img src="assets/images/gallery/wenchi/wheels_for_change/_MG_8568.jpg"
-                        alt="Wheelchair alignment check" loading="lazy" /></div>
-                    <div class="work-caption font-alt">
-                      <h3 class="work-title">Mobility Alignment</h3>
-                      <div class="work-descr">Entrepreneurship &amp; Youth Empowerment</div>
-                    </div>
+                        alt="Wheelchair alignment check" /></div>
                   </a>
                 </li>
               </ul>
@@ -509,15 +390,14 @@
     (function ($) {
       $(function () {
         var $grid = $("#works-grid");
-        var $filters = $("#filters a");
-        var supportsHover = window.matchMedia && window.matchMedia("(hover: hover)").matches;
+        var $filters = $("#projectFilters a");
         var raf = window.requestAnimationFrame
           ? window.requestAnimationFrame.bind(window)
           : function (cb) {
             return setTimeout(cb, 16);
           };
 
-        if (!$grid.length) {
+        if (!$grid.length || !$filters.length) {
           return;
         }
 
@@ -541,18 +421,6 @@
           $(this).addClass("active");
           applyFilter(selector);
         });
-
-        if (supportsHover) {
-          $grid.on("mouseenter", ".work-item", function () {
-            var $item = $(this);
-            $grid.find(".work-item.expanded").not($item).removeClass("expanded");
-            $item.addClass("expanded");
-          });
-
-          $grid.on("mouseleave", ".work-item", function () {
-            $(this).removeClass("expanded");
-          });
-        }
       });
     })(jQuery);
   </script>
