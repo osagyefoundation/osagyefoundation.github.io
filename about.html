@@ -51,6 +51,52 @@
   <!-- Main stylesheet and color file-->
   <link href="assets/css/style.css" rel="stylesheet">
   <link id="color-scheme" href="assets/css/colors/default.css" rel="stylesheet">
+  <style>
+    .board-portraits {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .board-card {
+      background: transparent;
+      border: 0;
+      padding: 0;
+      text-align: left;
+      transition: transform 0.35s ease;
+    }
+
+    .board-image {
+      width: 100%;
+      max-height: none;
+      overflow: hidden;
+    }
+
+    .board-image img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+      transform-origin: center top;
+    }
+
+    .board-card:not(.active) .board-image img {
+      transform: scale(0.9);
+      opacity: 0.85;
+    }
+
+    .board-card.active .board-image img {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .board-showcase.board-selected .board-card:not(.active) .board-image img {
+      transform: scale(0.7);
+      opacity: 0.65;
+    }
+  </style>
 </head>
 
 <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
@@ -493,6 +539,8 @@
       };
 
       var boardCards = document.querySelectorAll(".board-card");
+      var boardShowcase = document.querySelector(".board-showcase");
+      var boardInteracted = false;
       var boardRole = document.getElementById("boardBioRole");
       var boardName = document.getElementById("boardBioName");
       var boardTitle = document.getElementById("boardBioTitle");
@@ -524,6 +572,10 @@
               btn.classList.toggle("active", btn === card);
             });
             renderBoard(memberKey);
+            if (!boardInteracted && boardShowcase) {
+              boardShowcase.classList.add("board-selected");
+              boardInteracted = true;
+            }
           });
         });
 
