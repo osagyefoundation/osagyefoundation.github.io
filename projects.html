@@ -51,70 +51,79 @@
   <link href="assets/css/style.css" rel="stylesheet">
   <link id="color-scheme" href="assets/css/colors/default.css" rel="stylesheet">
   <style>
-    /* Projects grid sizing + hover spotlight */
-    .projects-grid {
-      list-style: none;
-      margin: 32px auto 0;
-      padding: 0;
+    /* Projects gallery (mirrors gallery.html but image-only) */
+    .project-filter-pills {
+      margin-top: 32px;
+      justify-content: center;
+    }
+
+    .projects-gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-      gap: 32px;
-      max-width: 1400px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+      margin: 36px 0 0;
     }
 
-    .projects-grid .work-item {
-      border-radius: 18px;
+    .project-card {
+      border-radius: 26px;
       overflow: hidden;
-      position: relative;
-      background: #040b0c;
-      box-shadow: 0 12px 28px rgba(3, 8, 12, 0.45);
-      transition: transform 0.25s ease;
+      box-shadow: 0 25px 60px rgba(2, 8, 12, 0.25);
+      border: 1px solid rgba(4, 15, 19, 0.1);
+      background: #050d11;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .projects-grid .work-item:hover {
-      transform: translateY(-4px);
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 35px 70px rgba(5, 15, 20, 0.28);
     }
 
-    .projects-grid .work-item a {
+    .project-card a {
       display: block;
-      height: 100%;
       color: inherit;
     }
 
-    .projects-grid .work-image {
-      width: 100%;
+    .project-card-media {
       position: relative;
+      width: 100%;
       overflow: hidden;
-      background: #000;
     }
 
-    .projects-grid .work-image::before {
+    .project-card-media::before {
       content: "";
       display: block;
-      padding-bottom: 100%;
+      padding-bottom: 75%;
     }
 
-    .projects-grid .work-image img {
+    .project-card img {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
-      transition: transform 0.45s ease, filter 0.45s ease;
+      transition: transform 0.5s ease;
     }
 
-    .projects-grid .work-item:hover .work-image img {
+    .project-card:hover img {
       transform: scale(1.05);
-      filter: saturate(1.05);
     }
 
-    .projects-grid .work-item.is-filtered-out {
+    .project-card.is-hidden {
       display: none !important;
     }
 
+    @media (max-width: 991px) {
+      .projects-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+    }
+
     @media (max-width: 575px) {
-      .projects-grid {
+      .project-filter-pills {
+        justify-content: flex-start;
+      }
+
+      .projects-gallery {
         grid-template-columns: 1fr;
       }
     }
@@ -163,151 +172,169 @@
       </section>
       <section class="module">
         <div class="container">
-          <div class="row scroll-reveal">
+          <div class="row">
             <div class="col-sm-12">
-              <div class="works-filter font-alt align-center" id="projectFilters">
-                <a href="#" class="active" data-filter="*">All</a>
-                <a href="#" data-filter=".filter-education">Education</a>
-                <a href="#" data-filter=".filter-health">Health</a>
-                <a href="#" data-filter=".filter-water">Water-Sanitation</a>
-                <a href="#" data-filter=".filter-entrepreneurship">Entrepreneurship-YouthEmpowerment</a>
-                <a href="#" data-filter=".filter-technology">Technology-Innovation</a>
-                <a href="#" data-filter=".filter-tourism">Tourism-Culture-Heritage</a>
+              <div class="gallery-pills project-filter-pills" id="projectFilters" role="tablist"
+                aria-label="Project filters">
+                <button type="button" class="gallery-pill active" data-project-filter="all">All</button>
+                <button type="button" class="gallery-pill" data-project-filter="education">Education</button>
+                <button type="button" class="gallery-pill" data-project-filter="health">Health</button>
+                <button type="button" class="gallery-pill" data-project-filter="water">Water &amp; Sanitation</button>
+                <button type="button" class="gallery-pill" data-project-filter="entrepreneurship">Entrepreneurship &amp;
+                  Youth</button>
+                <button type="button" class="gallery-pill" data-project-filter="technology">Technology &amp;
+                  Innovation</button>
+                <button type="button" class="gallery-pill" data-project-filter="tourism">Tourism, Culture &amp;
+                  Heritage</button>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-12">
-              <ul class="works-grid works-hover-w scroll-reveal projects-grid" id="works-grid" data-static-grid="true">
-                <li class="work-item filter-health">
+              <div class="projects-gallery" id="projectsGallery">
+                <figure class="project-card" data-category="health">
                   <a href="assets/images/gallery/wenchi/healthcare/health.jpg" target="_blank"
                     rel="noopener noreferrer">
-                    <div class="work-image"><img src="assets/images/gallery/wenchi/healthcare/health.jpg"
-                        alt="Community health outreach" /></div>
+                    <div class="project-card-media"><img src="assets/images/gallery/wenchi/healthcare/health.jpg"
+                        alt="Community health outreach"></div>
                   </a>
-                </li>
-                <li class="work-item filter-water">
+                </figure>
+                <figure class="project-card" data-category="water">
                   <a href="assets/images/gallery/wenchi/sanitation_and_water/_MG_3358.jpg" target="_blank"
                     rel="noopener noreferrer">
-                    <div class="work-image"><img src="assets/images/gallery/wenchi/sanitation_and_water/_MG_3358.jpg"
-                        alt="Construction of rural water system" /></div>
+                    <div class="project-card-media"><img
+                        src="assets/images/gallery/wenchi/sanitation_and_water/_MG_3358.jpg"
+                        alt="Construction of rural water system"></div>
                   </a>
-                </li>
-                <li class="work-item filter-water">
+                </figure>
+                <figure class="project-card" data-category="water">
                   <a href="assets/images/gallery/wenchi/sanitation_and_water/_MG_3404.jpg" target="_blank"
                     rel="noopener noreferrer">
-                    <div class="work-image"><img src="assets/images/gallery/wenchi/sanitation_and_water/_MG_3404.jpg"
-                        alt="Community sanitation sensitization" /></div>
+                    <div class="project-card-media"><img
+                        src="assets/images/gallery/wenchi/sanitation_and_water/_MG_3404.jpg"
+                        alt="Community sanitation sensitization"></div>
                   </a>
-                </li>
-                <li class="work-item filter-water">
+                </figure>
+                <figure class="project-card" data-category="water">
                   <a href="assets/images/gallery/wenchi/sanitation_and_water/_MG_3430.jpg" target="_blank"
                     rel="noopener noreferrer">
-                    <div class="work-image"><img src="assets/images/gallery/wenchi/sanitation_and_water/_MG_3430.jpg"
-                        alt="Clean water infrastructure" /></div>
+                    <div class="project-card-media"><img
+                        src="assets/images/gallery/wenchi/sanitation_and_water/_MG_3430.jpg"
+                        alt="Clean water infrastructure"></div>
                   </a>
-                </li>
-                <li class="work-item filter-water">
+                </figure>
+                <figure class="project-card" data-category="water">
                   <a href="assets/images/gallery/wenchi/sanitation_and_water/IMG-20241112-WA0015.jpg" target="_blank"
                     rel="noopener noreferrer">
-                    <div class="work-image"><img
+                    <div class="project-card-media"><img
                         src="assets/images/gallery/wenchi/sanitation_and_water/IMG-20241112-WA0015.jpg"
-                        alt="Water access installation" /></div>
+                        alt="Water access installation"></div>
                   </a>
-                </li>
-                <li class="work-item filter-water">
+                </figure>
+                <figure class="project-card" data-category="water">
                   <a href="assets/images/gallery/wenchi/sanitation_and_water/IMG-20241112-WA0020.jpg" target="_blank"
                     rel="noopener noreferrer">
-                    <div class="work-image"><img
+                    <div class="project-card-media"><img
                         src="assets/images/gallery/wenchi/sanitation_and_water/IMG-20241112-WA0020.jpg"
-                        alt="Community borehole maintenance" /></div>
+                        alt="Community borehole maintenance"></div>
                   </a>
-                </li>
-                <li class="work-item filter-tourism">
+                </figure>
+                <figure class="project-card" data-category="tourism">
                   <a href="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0514.jpg" target="_blank"
                     rel="noopener noreferrer">
-                    <div class="work-image"><img src="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0514.jpg"
-                        alt="Cultural drumming display" /></div>
+                    <div class="project-card-media"><img
+                        src="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0514.jpg"
+                        alt="Cultural drumming display"></div>
                   </a>
-                </li>
-                <li class="work-item filter-tourism">
+                </figure>
+                <figure class="project-card" data-category="tourism">
                   <a href="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0599.jpg" target="_blank"
                     rel="noopener noreferrer">
-                    <div class="work-image"><img src="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0599.jpg"
-                        alt="Heritage parade" /></div>
+                    <div class="project-card-media"><img
+                        src="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0599.jpg" alt="Heritage parade">
+                    </div>
                   </a>
-                </li>
-                <li class="work-item filter-tourism">
+                </figure>
+                <figure class="project-card" data-category="tourism">
                   <a href="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0662.jpg" target="_blank"
                     rel="noopener noreferrer">
-                    <div class="work-image"><img src="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0662.jpg"
-                        alt="Community procession" /></div>
+                    <div class="project-card-media"><img
+                        src="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0662.jpg" alt="Community procession">
+                    </div>
                   </a>
-                </li>
-                <li class="work-item filter-tourism">
+                </figure>
+                <figure class="project-card" data-category="tourism">
                   <a href="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0725-2.jpg" target="_blank"
                     rel="noopener noreferrer">
-                    <div class="work-image"><img src="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0725-2.jpg"
-                        alt="Royal gathering in Wenchi" /></div>
+                    <div class="project-card-media"><img
+                        src="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0725-2.jpg"
+                        alt="Royal gathering in Wenchi"></div>
                   </a>
-                </li>
-                <li class="work-item filter-entrepreneurship">
+                </figure>
+                <figure class="project-card" data-category="entrepreneurship">
                   <a href="assets/images/gallery/wenchi/wheels_for_change/_MG_8395.jpg" target="_blank"
                     rel="noopener noreferrer">
-                    <div class="work-image"><img src="assets/images/gallery/wenchi/wheels_for_change/_MG_8395.jpg"
-                        alt="Wheelchair donation line-up" /></div>
+                    <div class="project-card-media"><img
+                        src="assets/images/gallery/wenchi/wheels_for_change/_MG_8395.jpg"
+                        alt="Wheelchair donation line-up"></div>
                   </a>
-                </li>
-                <li class="work-item filter-entrepreneurship">
+                </figure>
+                <figure class="project-card" data-category="entrepreneurship">
                   <a href="assets/images/gallery/wenchi/wheels_for_change/_MG_8396.jpg" target="_blank"
                     rel="noopener noreferrer">
-                    <div class="work-image"><img src="assets/images/gallery/wenchi/wheels_for_change/_MG_8396.jpg"
-                        alt="Wheelchair assembly" /></div>
+                    <div class="project-card-media"><img
+                        src="assets/images/gallery/wenchi/wheels_for_change/_MG_8396.jpg" alt="Wheelchair assembly">
+                    </div>
                   </a>
-                </li>
-                <li class="work-item filter-entrepreneurship">
+                </figure>
+                <figure class="project-card" data-category="entrepreneurship">
                   <a href="assets/images/gallery/wenchi/wheels_for_change/_MG_8515.jpg" target="_blank"
                     rel="noopener noreferrer">
-                    <div class="work-image"><img src="assets/images/gallery/wenchi/wheels_for_change/_MG_8515.jpg"
-                        alt="Beneficiaries testing wheelchairs" /></div>
+                    <div class="project-card-media"><img
+                        src="assets/images/gallery/wenchi/wheels_for_change/_MG_8515.jpg"
+                        alt="Beneficiaries testing wheelchairs"></div>
                   </a>
-                </li>
-                <li class="work-item filter-entrepreneurship">
+                </figure>
+                <figure class="project-card" data-category="entrepreneurship">
                   <a href="assets/images/gallery/wenchi/wheels_for_change/_MG_8516.jpg" target="_blank"
                     rel="noopener noreferrer">
-                    <div class="work-image"><img src="assets/images/gallery/wenchi/wheels_for_change/_MG_8516.jpg"
-                        alt="Wheelchair beneficiary smiles" /></div>
+                    <div class="project-card-media"><img
+                        src="assets/images/gallery/wenchi/wheels_for_change/_MG_8516.jpg"
+                        alt="Wheelchair beneficiary smiles"></div>
                   </a>
-                </li>
-                <li class="work-item filter-entrepreneurship">
+                </figure>
+                <figure class="project-card" data-category="entrepreneurship">
                   <a href="assets/images/gallery/wenchi/wheels_for_change/_MG_8536.jpg" target="_blank"
                     rel="noopener noreferrer">
-                    <div class="work-image"><img src="assets/images/gallery/wenchi/wheels_for_change/_MG_8536.jpg"
-                        alt="Wheelchair fleet" /></div>
+                    <div class="project-card-media"><img
+                        src="assets/images/gallery/wenchi/wheels_for_change/_MG_8536.jpg" alt="Wheelchair fleet"></div>
                   </a>
-                </li>
-                <li class="work-item filter-entrepreneurship">
+                </figure>
+                <figure class="project-card" data-category="entrepreneurship">
                   <a href="assets/images/gallery/wenchi/wheels_for_change/_MG_8544.jpg" target="_blank"
                     rel="noopener noreferrer">
-                    <div class="work-image"><img src="assets/images/gallery/wenchi/wheels_for_change/_MG_8544.jpg"
-                        alt="Community receiving mobility devices" /></div>
+                    <div class="project-card-media"><img
+                        src="assets/images/gallery/wenchi/wheels_for_change/_MG_8544.jpg"
+                        alt="Community receiving mobility devices"></div>
                   </a>
-                </li>
-                <li class="work-item filter-entrepreneurship">
+                </figure>
+                <figure class="project-card" data-category="entrepreneurship">
                   <a href="assets/images/gallery/wenchi/wheels_for_change/_MG_8550.jpg" target="_blank"
                     rel="noopener noreferrer">
-                    <div class="work-image"><img src="assets/images/gallery/wenchi/wheels_for_change/_MG_8550.jpg"
-                        alt="Wheelchair usage demo" /></div>
+                    <div class="project-card-media"><img
+                        src="assets/images/gallery/wenchi/wheels_for_change/_MG_8550.jpg" alt="Wheelchair usage demo">
+                    </div>
                   </a>
-                </li>
-                <li class="work-item filter-entrepreneurship">
+                </figure>
+                <figure class="project-card" data-category="entrepreneurship">
                   <a href="assets/images/gallery/wenchi/wheels_for_change/_MG_8568.jpg" target="_blank"
                     rel="noopener noreferrer">
-                    <div class="work-image"><img src="assets/images/gallery/wenchi/wheels_for_change/_MG_8568.jpg"
-                        alt="Wheelchair alignment check" /></div>
+                    <div class="project-card-media"><img
+                        src="assets/images/gallery/wenchi/wheels_for_change/_MG_8568.jpg"
+                        alt="Wheelchair alignment check"></div>
                   </a>
-                </li>
-              </ul>
+                </figure>
+              </div>
             </div>
           </div>
         </div>
@@ -387,42 +414,34 @@
   <script src="assets/js/plugins.js"></script>
   <script src="assets/js/main.js"></script>
   <script>
-    (function ($) {
-      $(function () {
-        var $grid = $("#works-grid");
-        var $filters = $("#projectFilters a");
-        var raf = window.requestAnimationFrame
-          ? window.requestAnimationFrame.bind(window)
-          : function (cb) {
-            return setTimeout(cb, 16);
-          };
+    (function () {
+      var filterPills = document.querySelectorAll('[data-project-filter]');
+      var cards = document.querySelectorAll('#projectsGallery .project-card');
 
-        if (!$grid.length || !$filters.length) {
-          return;
-        }
+      if (!filterPills.length || !cards.length) {
+        return;
+      }
 
-        function applyFilter(selector) {
-          raf(function () {
-            $grid.find(".work-item").each(function () {
-              var $item = $(this);
-              if (selector === "*" || $item.is(selector)) {
-                $item.removeClass("is-filtered-out");
-              } else {
-                $item.addClass("is-filtered-out");
-              }
-            });
+      function applyFilter(filter) {
+        cards.forEach(function (card) {
+          var category = card.getAttribute('data-category');
+          var matches = filter === 'all' || category === filter;
+          card.classList.toggle('is-hidden', !matches);
+        });
+      }
+
+      filterPills.forEach(function (pill) {
+        pill.addEventListener('click', function () {
+          filterPills.forEach(function (p) {
+            p.classList.remove('active');
           });
-        }
-
-        $filters.on("click", function (e) {
-          e.preventDefault();
-          var selector = $(this).data("filter") || "*";
-          $filters.removeClass("active");
-          $(this).addClass("active");
-          applyFilter(selector);
+          pill.classList.add('active');
+          applyFilter(pill.getAttribute('data-project-filter'));
         });
       });
-    })(jQuery);
+
+      applyFilter('all');
+    })();
   </script>
 </body>
 

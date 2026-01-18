@@ -370,6 +370,9 @@
           setFilter(pill.getAttribute('data-filter'));
         });
       });
+
+      // Ensure cards are visible on initial load, including on browsers that skip IntersectionObserver.
+      setFilter('all');
     })();
   </script>
 </body>
