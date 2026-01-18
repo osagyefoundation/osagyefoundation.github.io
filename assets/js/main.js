@@ -1,6 +1,6 @@
 console.log(
   "%c Proudly Crafted with ZiOn.",
-  "background: #222; color: #bada55"
+  "background: #222; color: #bada55",
 );
 
 /* ---------------------------------------------- /*
@@ -52,7 +52,7 @@ console.log(
 
     if (
       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
+        navigator.userAgent,
       )
     ) {
       mobileTest = true;
@@ -83,7 +83,7 @@ console.log(
       if ($(this).attr("data-background")) {
         $(this).css(
           "background-image",
-          "url(" + $(this).attr("data-background") + ")"
+          "url(" + $(this).attr("data-background") + ")",
         );
       }
     });
@@ -142,7 +142,7 @@ console.log(
             .fadeOut()
             .animate(
               { top: "-80px" },
-              { queue: false, easing: "swing", duration: 700 }
+              { queue: false, easing: "swing", duration: 700 },
             );
           slider.slides.eq(slider.currentSlide).delay(500);
           slider.slides.eq(slider.animatingTo).delay(500);
@@ -152,7 +152,7 @@ console.log(
             .fadeIn()
             .animate(
               { top: "0" },
-              { queue: false, easing: "swing", duration: 700 }
+              { queue: false, easing: "swing", duration: 700 },
             );
         },
         useCSS: true,
@@ -217,12 +217,12 @@ console.log(
     function hoverDropdown(width, mobileTest) {
       if (width > 767 && mobileTest !== true) {
         $(
-          ".navbar-custom .navbar-nav > li.dropdown, .navbar-custom li.dropdown > ul > li.dropdown"
+          ".navbar-custom .navbar-nav > li.dropdown, .navbar-custom li.dropdown > ul > li.dropdown",
         ).removeClass("open");
         var delay = 0;
         var setTimeoutConst;
         $(
-          ".navbar-custom .navbar-nav > li.dropdown, .navbar-custom li.dropdown > ul > li.dropdown"
+          ".navbar-custom .navbar-nav > li.dropdown, .navbar-custom li.dropdown > ul > li.dropdown",
         ).hover(
           function () {
             var $this = $(this);
@@ -235,11 +235,11 @@ console.log(
             clearTimeout(setTimeoutConst);
             $(this).removeClass("open");
             $(this).find(".dropdown-toggle").removeClass("disabled");
-          }
+          },
         );
       } else {
         $(
-          ".navbar-custom .navbar-nav > li.dropdown, .navbar-custom li.dropdown > ul > li.dropdown"
+          ".navbar-custom .navbar-nav > li.dropdown, .navbar-custom li.dropdown > ul > li.dropdown",
         ).unbind("mouseenter mouseleave");
         $(".navbar-custom [data-toggle=dropdown]")
           .not(".binded")
@@ -479,7 +479,7 @@ console.log(
           {
             scrollTop: $(anchor.attr("href")).offset().top - 50,
           },
-          1000
+          1000,
         );
       e.preventDefault();
     });
@@ -522,7 +522,7 @@ console.log(
         if (!endpoint || endpoint.indexOf("CHANGE_ME@example.com") !== -1) {
           if ($response.length) {
             $response.html(
-              '<span class="text-warning">Configure the form action to point at your submission endpoint.</span>'
+              '<span class="text-warning">Configure the form action to point at your submission endpoint.</span>',
             );
           }
           if ($submit.length) {
@@ -554,7 +554,7 @@ console.log(
               $response.html(options.successMessage);
             } else if ($response.length) {
               $response.html(
-                '<span class="text-success">Thanks! We will be in touch soon.</span>'
+                '<span class="text-success">Thanks! We will be in touch soon.</span>',
               );
             }
 
@@ -563,7 +563,7 @@ console.log(
           .catch(function () {
             if ($response.length) {
               $response.html(
-                '<span class="text-danger">We could not send your request. Please contact us directly.</span>'
+                '<span class="text-danger">We could not send your request. Please contact us directly.</span>',
               );
             }
           })
@@ -616,6 +616,7 @@ console.log(
     });
 
     initLeadershipRotation();
+    initScrollReveal();
 
     function initLeadershipRotation() {
       var rotator = document.querySelector('[data-rotator="executive"]');
@@ -807,6 +808,74 @@ console.log(
       updateHeight(front);
       updateAriaStates();
       scheduleNext();
+    }
+
+    function initScrollReveal() {
+      var selectors = [
+        ".module > .container",
+        ".module-small > .container",
+        ".module",
+        ".module-small",
+        ".home-section > .container",
+        ".footer .container",
+        ".widget",
+        ".features-item",
+        ".content-box",
+        ".team-item",
+      ];
+      var revealTargets = [];
+
+      function registerElement(element) {
+        if (!element) {
+          return;
+        }
+
+        if (!element.classList.contains("scroll-reveal")) {
+          element.classList.add("scroll-reveal");
+        }
+
+        if (revealTargets.indexOf(element) === -1) {
+          revealTargets.push(element);
+        }
+      }
+
+      selectors.forEach(function (selector) {
+        var elements = document.querySelectorAll(selector);
+        Array.prototype.forEach.call(elements, registerElement);
+      });
+
+      var manualElements = document.querySelectorAll("[data-scroll-reveal]");
+      Array.prototype.forEach.call(manualElements, registerElement);
+
+      var existingClassElements = document.querySelectorAll(".scroll-reveal");
+      Array.prototype.forEach.call(existingClassElements, registerElement);
+
+      if (!revealTargets.length) {
+        return;
+      }
+
+      if (!("IntersectionObserver" in window)) {
+        revealTargets.forEach(function (element) {
+          element.classList.add("is-visible");
+        });
+        return;
+      }
+
+      var observer = new IntersectionObserver(
+        function (entries, obs) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              obs.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2, rootMargin: "0px 0px -40px 0px" },
+      );
+
+      revealTargets.forEach(function (element) {
+        observer.observe(element);
+      });
     }
 
     /* ---------------------------------------------- /*
@@ -1044,7 +1113,7 @@ console.log(
         "assets/images/map-icon.png",
         new google.maps.Size(59, 65),
         new google.maps.Point(0, 0),
-        new google.maps.Point(24, 42)
+        new google.maps.Point(24, 42),
       );
 
       var marker = new google.maps.Marker({
