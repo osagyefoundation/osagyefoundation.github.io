@@ -100,27 +100,27 @@
           <div class="thematic-card scroll-reveal">
             <div class="thematic-menu">
               <div class="thematic-menu-header">Thematic Areas</div>
-              <button type="button" class="thematic-link active" data-area="education">
+              <button type="button" class="thematic-link active" data-area="education" id="thematic-education">
                 <span>Education</span>
                 <span class="thematic-link-icon">&rarr;</span>
               </button>
-              <button type="button" class="thematic-link" data-area="health">
+              <button type="button" class="thematic-link" data-area="health" id="thematic-health">
                 <span>Health Care</span>
                 <span class="thematic-link-icon">&rarr;</span>
               </button>
-              <button type="button" class="thematic-link" data-area="water">
+              <button type="button" class="thematic-link" data-area="water" id="thematic-water">
                 <span>Water &amp; Sanitation</span>
                 <span class="thematic-link-icon">&rarr;</span>
               </button>
-              <button type="button" class="thematic-link" data-area="entrepreneurship">
+              <button type="button" class="thematic-link" data-area="entrepreneurship" id="thematic-entrepreneurship">
                 <span>Entrepreneurship &amp; Youth Empowerment</span>
                 <span class="thematic-link-icon">&rarr;</span>
               </button>
-              <button type="button" class="thematic-link" data-area="technology">
+              <button type="button" class="thematic-link" data-area="technology" id="thematic-technology">
                 <span>Technology &amp; Innovation</span>
                 <span class="thematic-link-icon">&rarr;</span>
               </button>
-              <button type="button" class="thematic-link" data-area="tourism">
+              <button type="button" class="thematic-link" data-area="tourism" id="thematic-tourism">
                 <span>Tourism, Culture &amp; Heritage</span>
                 <span class="thematic-link-icon">&rarr;</span>
               </button>
@@ -338,17 +338,59 @@
         });
       }
 
+      function activateArea(areaKey, shouldUpdateHash) {
+        var target = document.querySelector('.thematic-link[data-area="' + areaKey + '"]');
+        if (!target || !thematicAreas[areaKey]) {
+          return;
+        }
+
+        menuLinks.forEach(function (btn) {
+          btn.classList.toggle("active", btn === target);
+        });
+
+        renderArea(areaKey);
+
+        if (shouldUpdateHash) {
+          var newHash = "#thematic-" + areaKey;
+          if (window.history && window.history.replaceState) {
+            window.history.replaceState(null, "", newHash);
+          } else {
+            window.location.hash = newHash;
+          }
+        }
+      }
+
+      function getAreaFromHash() {
+        var hash = window.location.hash.replace("#", "");
+        if (hash.indexOf("thematic-") === 0) {
+          var candidate = hash.replace("thematic-", "");
+          if (thematicAreas[candidate]) {
+            return candidate;
+          }
+        }
+        return null;
+      }
+
       menuLinks.forEach(function (link) {
-        link.addEventListener("click", function () {
+        link.addEventListener("click", function (event) {
+          event.preventDefault();
           var areaKey = link.getAttribute("data-area");
-          menuLinks.forEach(function (btn) {
-            btn.classList.toggle("active", btn === link);
-          });
-          renderArea(areaKey);
+          activateArea(areaKey, true);
+          if (typeof link.scrollIntoView === "function") {
+            link.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
         });
       });
 
-      renderArea("education");
+      var initialArea = getAreaFromHash() || "education";
+      activateArea(initialArea, false);
+
+      window.addEventListener("hashchange", function () {
+        var areaFromHash = getAreaFromHash();
+        if (areaFromHash) {
+          activateArea(areaFromHash, false);
+        }
+      });
 
       // Thematic area module only; board showcase removed for a streamlined programs page.
     })();
