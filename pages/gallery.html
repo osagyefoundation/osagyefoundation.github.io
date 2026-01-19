@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--  
+    Document Title
+    =============================================
+    -->
+  <title>Gallery | Osagyefo Ampem Foundation</title>
+  <meta property="og:image" content="../assets/images/branding/logo.png">
+  <meta property="og:image:alt" content="Osagyefo Ampem Foundation logo">
+  <meta name="twitter:image" content="../assets/images/branding/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!--  
+    Favicons
+    =============================================
+    -->
+  <link rel="icon" type="image/png" href="../assets/images/branding/logo.png">
+  <link rel="shortcut icon" type="image/png" href="../assets/images/branding/logo.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="../assets/images/branding/logo.png">
+  <meta name="theme-color" content="#ffffff">
+  <!--  
+    Stylesheets
+    =============================================
+    
+    -->
+  <!-- Default stylesheets-->
+  <link href="../assets/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Template specific stylesheets-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Volkhov:400i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+  <link href="../assets/lib/animate.css/animate.css" rel="stylesheet">
+  <link href="../assets/lib/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../assets/lib/et-line-font/et-line-font.css" rel="stylesheet">
+  <link href="../assets/lib/flexslider/flexslider.css" rel="stylesheet">
+  <link href="../assets/lib/owl.carousel/dist/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../assets/lib/owl.carousel/dist/assets/owl.theme.default.min.css" rel="stylesheet">
+  <link href="../assets/lib/magnific-popup/dist/magnific-popup.css" rel="stylesheet">
+  <link href="../assets/lib/simple-text-rotator/simpletextrotator.css" rel="stylesheet">
+  <!-- Main stylesheet and color file-->
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link id="color-scheme" href="../assets/css/colors/default.css" rel="stylesheet">
+  <style>
+    /* Gallery carousel (mirrors projects carousel behavior) */
+    .gallery-filter-pills {
+      margin-top: 32px;
+      justify-content: center;
+    }
+
+    .gallery-carousel {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 20px 12px 40px;
+      scroll-behavior: smooth;
+      align-items: center;
+    }
+
+    .gallery-carousel::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .gallery-carousel::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+    }
+
+    .gallery-slide {
+      flex: 0 0 clamp(320px, 52vw, 720px);
+      scroll-snap-align: center;
+      transition: transform 0.45s ease, opacity 0.45s ease, box-shadow 0.45s ease;
+      transform: scale(0.9);
+      opacity: 0.65;
+    }
+
+    .gallery-slide.is-active {
+      transform: scale(1.08);
+      opacity: 1;
+      box-shadow: 0 30px 70px rgba(5, 15, 20, 0.35);
+    }
+
+    .gallery-slide a {
+      display: block;
+    }
+
+    .gallery-slide img {
+      width: 100%;
+      display: block;
+      height: clamp(260px, 55vh, 540px);
+      object-fit: cover;
+      border-radius: 26px;
+    }
+
+    .gallery-slide.is-hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 575px) {
+      .gallery-filter-pills {
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
+  <main>
+    <div class="page-loader">
+      <div class="loader">Loading...</div>
+    </div>
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span
+              class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
+              class="icon-bar"></span></button><a class="navbar-brand brand-with-logo" href="../index.html"><img
+              src="../assets/images/branding/logo.png" alt="Osagyefo Ampem Foundation logo"><span
+              class="brand-text">Osagyefo Ampem Foundation</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="custom-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li class="active"><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="main">
+      <section class="module bg-dark-60 gallery-page-header parallax-bg hero-viewport full-hero"
+        data-background="../assets/images/hero/hero-background.jpg">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+              <div class="hero-text-panel">
+                <p class="section-label">Living Archive</p>
+                <h2 class="module-title font-alt">Field Gallery</h2>
+                <div class="module-subtitle about-lead">
+                  <p>The Wenchi Traditional Area comes alive through every image: outreach caravans, classroom moments,
+                    community water commissions, and cultural processions captured with consent and care.</p>
+                  <p>Browse the carousel of impact to witness how each thematic pillar translates into visible change
+                    &mdash;
+                    and credit the Osagyefo Ampem Foundation when sharing.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="module" id="gallery">
+        <div class="container">
+          <div class="row text-center">
+            <div class="col-sm-10 col-sm-offset-1">
+              <p class="section-label">Living Archive</p>
+              <h2 class="module-title font-alt">Stories Told Through Images</h2>
+              <p class="module-subtitle font-serif">Use the filters to explore how each thematic pillar translates into
+                real community impact. Every photo is cleared for media sharing &mdash; remember to credit the Osagyefo
+                Ampem Foundation.</p>
+            </div>
+          </div>
+          <div class="gallery-pills gallery-filter-pills" role="tablist" aria-label="Gallery filters">
+            <button type="button" class="gallery-pill active" data-project-filter="all">All Moments</button>
+            <button type="button" class="gallery-pill" data-project-filter="education">Education</button>
+            <button type="button" class="gallery-pill" data-project-filter="health">Health</button>
+            <button type="button" class="gallery-pill" data-project-filter="water">Water &amp; Sanitation</button>
+            <button type="button" class="gallery-pill" data-project-filter="entrepreneurship">Entrepreneurship &amp;
+              Youth</button>
+            <button type="button" class="gallery-pill" data-project-filter="technology">Technology &amp;
+              Innovation</button>
+            <button type="button" class="gallery-pill" data-project-filter="tourism">Culture &amp; Heritage</button>
+          </div>
+          <div class="gallery-carousel" id="galleryCarousel" aria-label="Gallery carousel">
+            <div class="gallery-slide" data-category="education">
+              <a href="../assets/images/gallery/wenchi/board/execdirector-talk.jpg" target="_blank"
+                rel="noopener noreferrer">
+                <img src="../assets/images/gallery/wenchi/board/execdirector-talk.jpg"
+                  alt="Facilitator leads a mentorship dialogue with students">
+              </a>
+            </div>
+            <div class="gallery-slide" data-category="education">
+              <a href="../assets/images/gallery/wenchi/board/execdirector-talk-2.jpg" target="_blank"
+                rel="noopener noreferrer">
+                <img src="../assets/images/gallery/wenchi/board/execdirector-talk-2.jpg"
+                  alt="Community educators host a planning session with youth">
+              </a>
+            </div>
+            <div class="gallery-slide" data-category="health">
+              <a href="../assets/images/programs/health-care.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="../assets/images/programs/health-care.jpg" alt="Nurses provide blood pressure screening">
+              </a>
+            </div>
+            <div class="gallery-slide" data-category="water">
+              <a href="../assets/images/gallery/wenchi/sanitation_and_water/_MG_3430.jpg" target="_blank"
+                rel="noopener noreferrer">
+                <img src="../assets/images/gallery/wenchi/sanitation_and_water/_MG_3430.jpg"
+                  alt="Engineers inspect a rural water system">
+              </a>
+            </div>
+            <div class="gallery-slide" data-category="water">
+              <a href="../assets/images/gallery/wenchi/sanitation_and_water/IMG-20241112-WA0020.jpg" target="_blank"
+                rel="noopener noreferrer">
+                <img src="../assets/images/gallery/wenchi/sanitation_and_water/IMG-20241112-WA0020.jpg"
+                  alt="Volunteers coordinate water trucking support">
+              </a>
+            </div>
+            <div class="gallery-slide" data-category="entrepreneurship">
+              <a href="../assets/images/gallery/wenchi/wheels_for_change/_MG_8396.jpg" target="_blank"
+                rel="noopener noreferrer">
+                <img src="../assets/images/gallery/wenchi/wheels_for_change/_MG_8396.jpg"
+                  alt="Young artisans assemble adaptive tricycles">
+              </a>
+            </div>
+            <div class="gallery-slide" data-category="entrepreneurship">
+              <a href="../assets/images/gallery/wenchi/wheels_for_change/_MG_8544.jpg" target="_blank"
+                rel="noopener noreferrer">
+                <img src="../assets/images/gallery/wenchi/wheels_for_change/_MG_8544.jpg"
+                  alt="Volunteers line up adaptive bikes for delivery">
+              </a>
+            </div>
+            <div class="gallery-slide" data-category="technology">
+              <a href="../assets/images/gallery/wenchi/wheels_for_change/_MG_8515.jpg" target="_blank"
+                rel="noopener noreferrer">
+                <img src="../assets/images/gallery/wenchi/wheels_for_change/_MG_8515.jpg"
+                  alt="Technicians calibrate assistive devices">
+              </a>
+            </div>
+            <div class="gallery-slide" data-category="tourism">
+              <a href="../assets/images/gallery/wenchi/tourism_and_heritage/IMG_0662.jpg" target="_blank"
+                rel="noopener noreferrer">
+                <img src="../assets/images/gallery/wenchi/tourism_and_heritage/IMG_0662.jpg"
+                  alt="Cultural troupe performs traditional dance">
+              </a>
+            </div>
+            <div class="gallery-slide" data-category="tourism">
+              <a href="../assets/images/gallery/wenchi/tourism_and_heritage/IMG_0514.jpg" target="_blank"
+                rel="noopener noreferrer">
+                <img src="../assets/images/gallery/wenchi/tourism_and_heritage/IMG_0514.jpg"
+                  alt="Community elders lead a procession">
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="module module-compact gallery-cta">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-10 col-sm-offset-1 text-center">
+              <p class="section-label">Media &amp; Partnerships</p>
+              <h2 class="module-title font-alt">Need the full story?</h2>
+              <p class="module-subtitle font-serif">Request interview support, detailed captions, or full-resolution
+                assets for
+                publications and partner reports.</p>
+              <a class="btn btn-round btn-hero-solid" href="mailto:info@osagyefoampemfoundation.com">Share a media
+                request</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="module-small bg-dark">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="widget">
+                <h5 class="widget-title font-alt">Partnerships &amp; Sustainability</h5>
+                <p>The Foundation works in collaboration with:</p>
+                <ul class="icon-list">
+                  <li>Traditional Authorities</li>
+                  <li>Government Agencies</li>
+                  <li>Development Partners</li>
+                  <li>Private Sector and CSR Programs</li>
+                  <li>Civil Society Organizations</li>
+                </ul>
+                <p>We prioritize local ownership, strategic partnerships, and sustainable, income-generating approaches
+                  to
+                  ensure long-term impact and community resilience.</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="widget">
+                <h5 class="widget-title font-alt">Contact Details</h5>
+                <p><strong>Phone</strong><br><a href="tel:+233531101194">+233 53 110 1194</a><br><a
+                    href="tel:+233277111194">+233 27 711 1194</a></p>
+                <p><strong>Email</strong><br><a
+                    href="mailto:info@osagyefoampemfoundation.com">info@osagyefoampemfoundation.com</a>
+                </p>
+                <h5 class="widget-title font-alt">Social Media</h5>
+                <ul class="icon-list">
+                  <li><a href="https://www.facebook.com/OsagyefoAmpemFoundation" target="_blank"
+                      rel="noopener noreferrer"><i class="fa fa-facebook"></i> Osagyefo Ampem Foundation</a></li>
+                  <li><a href="https://www.instagram.com/osagyefo.ampem.foundation" target="_blank"
+                      rel="noopener noreferrer"><i class="fa fa-instagram"></i> Osagyefo.ampem.foundation</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="widget">
+                <h5 class="widget-title font-alt">Offices</h5>
+                <p><strong>Accra:</strong><br>Fifth Floor - Gulf House, Shiashi Accra</p>
+                <p><strong>Wenchi:</strong><br>Wenchi Traditional Council</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="footer bg-dark">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <p class="copyright font-alt">&copy; 2026 Osagyefo Ampem Foundation. All rights reserved.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
+  </main>
+  <script src="../assets/lib/jquery/dist/jquery.js"></script>
+  <script src="../assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="../assets/lib/wow/dist/wow.js"></script>
+  <script src="../assets/lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js"></script>
+  <script src="../assets/lib/isotope/dist/isotope.pkgd.js"></script>
+  <script src="../assets/lib/imagesloaded/imagesloaded.pkgd.js"></script>
+  <script src="../assets/lib/flexslider/jquery.flexslider.js"></script>
+  <script src="../assets/lib/owl.carousel/dist/owl.carousel.min.js"></script>
+  <script src="../assets/lib/smoothscroll.js"></script>
+  <script src="../assets/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
+  <script src="../assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
+  <script src="../assets/js/plugins.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    (function () {
+      var filterPills = document.querySelectorAll('[data-project-filter]');
+      var carousel = document.getElementById('galleryCarousel');
+      var slides = document.querySelectorAll('.gallery-slide');
+
+      if (!filterPills.length || !carousel || !slides.length) {
+        return;
+      }
+
+      function setActiveSlide() {
+        var visibleSlides = Array.prototype.filter.call(slides, function (slide) {
+          return !slide.classList.contains('is-hidden');
+        });
+
+        if (!visibleSlides.length) {
+          return;
+        }
+
+        var center = carousel.scrollLeft + carousel.clientWidth / 2;
+        var closest = visibleSlides[0];
+        var closestDistance = Infinity;
+
+        visibleSlides.forEach(function (slide) {
+          var slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+          var distance = Math.abs(center - slideCenter);
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closest = slide;
+          }
+        });
+
+        slides.forEach(function (slide) {
+          slide.classList.toggle('is-active', slide === closest);
+        });
+      }
+
+      function applyFilter(filter) {
+        slides.forEach(function (slide) {
+          var category = slide.getAttribute('data-category');
+          var matches = filter === 'all' || category === filter;
+          slide.classList.toggle('is-hidden', !matches);
+        });
+
+        requestAnimationFrame(setActiveSlide);
+      }
+
+      var scheduled = false;
+      function handleScroll() {
+        if (scheduled) {
+          return;
+        }
+        scheduled = true;
+        requestAnimationFrame(function () {
+          scheduled = false;
+          setActiveSlide();
+        });
+      }
+
+      carousel.addEventListener('scroll', handleScroll);
+      window.addEventListener('resize', handleScroll);
+
+      if (window.matchMedia('(hover: hover)').matches) {
+        slides.forEach(function (slide) {
+          slide.addEventListener('mouseenter', function () {
+            if (slide.classList.contains('is-hidden')) {
+              return;
+            }
+
+            var activeSlide = carousel.querySelector('.gallery-slide.is-active');
+            if (!activeSlide || activeSlide === slide) {
+              return;
+            }
+
+            slide.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          });
+        });
+      }
+
+      filterPills.forEach(function (pill) {
+        pill.addEventListener('click', function () {
+          filterPills.forEach(function (p) {
+            p.classList.remove('active');
+          });
+          pill.classList.add('active');
+          applyFilter(pill.getAttribute('data-project-filter'));
+        });
+      });
+
+      applyFilter('all');
+      setActiveSlide();
+    })();
+  </script>
+</body>
+
+</html>

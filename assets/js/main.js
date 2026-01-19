@@ -50,8 +50,13 @@ console.log(
       width = Math.max($(window).width(), window.innerWidth),
       mobileTest = false;
 
+    var assetRoot =
+      window.location.pathname.indexOf("/pages/") !== -1
+        ? "../assets"
+        : "assets";
+
     (function setSiteFavicon() {
-      var faviconHref = "/assets/images/wenchi1/Logo.png";
+      var faviconHref = assetRoot + "/images/branding/logo.png";
       var head = document.head || document.getElementsByTagName("head")[0];
 
       if (!head) {
@@ -705,61 +710,61 @@ console.log(
           name: "Thomas Raphael Affare",
           title: "Executive Director & CEO",
           summary: "Steers strategy and partnerships for the foundation.",
-          image: "assets/images/wenchi1/execdirector.png",
+          image: assetRoot + "/images/board/executive-director.png",
         },
         {
           name: "Person3",
           title: "Education Consultant",
           summary: "Guides academic initiatives and learning partnerships.",
-          image: "assets/images/wenchi1/patronandteamonly.jpg",
+          image: assetRoot + "/images/board/patron-team-portrait.jpg",
         },
         {
           name: "Person4",
           title: "Health Consultant",
           summary: "Strengthens community health programming.",
-          image: "assets/images/wenchi1/execdirector.png",
+          image: assetRoot + "/images/board/executive-director.png",
         },
         {
           name: "Person5",
           title: "Tourism & Culture Consultant",
           summary: "Champions cultural heritage experiences.",
-          image: "assets/images/wenchi1/execdirector.png",
+          image: assetRoot + "/images/board/executive-director.png",
         },
         {
           name: "Person6",
           title: "Technology & ICT Consultant",
           summary: "Leads innovation and digital transformation projects.",
-          image: "assets/images/wenchi1/patronandteam.jpg",
+          image: assetRoot + "/images/board/patron-team.jpg",
         },
         {
           name: "Person7",
           title: "Construction & Projects Consultant",
           summary: "Oversees infrastructure and capital projects.",
-          image: "assets/images/wenchi1/execdirector.png",
+          image: assetRoot + "/images/board/executive-director.png",
         },
         {
           name: "Person8",
           title: "Board Member",
           summary: "Supports governance and strategic oversight.",
-          image: "assets/images/wenchi1/patronandteam.jpg",
+          image: assetRoot + "/images/board/patron-team.jpg",
         },
         {
           name: "Person9",
           title: "Board Member",
           summary: "Advances stakeholder engagement and governance.",
-          image: "assets/images/wenchi1/execdirector.png",
+          image: assetRoot + "/images/board/executive-director.png",
         },
         {
           name: "Person10",
           title: "Board Member",
           summary: "Provides advisory support to the board.",
-          image: "assets/images/wenchi1/execdirector.png",
+          image: assetRoot + "/images/board/executive-director.png",
         },
         {
           name: "Person11",
           title: "Director of Finance",
           summary: "Ensures fiscal stewardship and accountability.",
-          image: "assets/images/wenchi1/execdirector.png",
+          image: assetRoot + "/images/board/executive-director.png",
         },
       ];
 
@@ -1178,7 +1183,7 @@ console.log(
 
       // Let's also add a marker while we're at it
       var image = new google.maps.MarkerImage(
-        "assets/images/map-icon.png",
+        assetRoot + "/images/ui/map-marker.png",
         new google.maps.Size(59, 65),
         new google.maps.Point(0, 0),
         new google.maps.Point(24, 42),
