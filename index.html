@@ -51,6 +51,69 @@
   <!-- Main stylesheet and color file-->
   <link href="assets/css/style.css" rel="stylesheet">
   <link id="color-scheme" href="assets/css/colors/default.css" rel="stylesheet">
+  <style>
+    #home {
+      position: relative;
+      overflow: hidden;
+    }
+
+    #home.hero-story-active::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(3, 12, 6, 0.5);
+      z-index: 1;
+    }
+
+    #home .titan-caption {
+      position: relative;
+      z-index: 2;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    #home.hero-story-active .titan-caption {
+      opacity: 0;
+      transform: translateY(-20px);
+      pointer-events: none;
+    }
+
+    .hero-story-panel {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, 70%);
+      opacity: 0;
+      width: min(920px, 90%);
+      background: rgba(4, 12, 8, 0.78);
+      border-radius: 24px;
+      padding: 28px 30px 26px;
+      color: #fff;
+      transition: transform 0.6s ease, opacity 0.6s ease;
+      z-index: 3;
+      box-shadow: 0 30px 70px rgba(5, 15, 20, 0.35);
+    }
+
+    #home.hero-story-active .hero-story-panel {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
+
+    .hero-story-panel h4 {
+      margin-top: 0;
+      font-size: 22px;
+    }
+
+    .hero-story-panel p {
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 767px) {
+      .hero-story-panel {
+        padding: 20px 20px 18px;
+        transform: translate(-50%, 80%);
+      }
+    }
+  </style>
 </head>
 
 <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
@@ -85,37 +148,25 @@
         <div class="caption-content">
           <div class="font-alt mb-30 titan-title-size-1">Uniting Wenchiman Through Sustainable Development</div>
 
-          <a class="section-scroll btn btn-border-w btn-round" href="#about">Discover Our Story</a>
+          <a class="section-scroll btn btn-border-w btn-round" href="#home">Discover Our Story</a>
           <a class="btn btn-round btn-hero-solid" href="programs.html">Explore Programs</a>
         </div>
       </div>
+      <div class="hero-story-panel" id="heroStory" aria-live="polite">
+        <h4 class="font-alt">About Us</h4>
+        <p>The Osagyefo Ampem Foundation is a community-focused non-profit organization dedicated to advancing
+          sustainable development within the Wenchi Traditional Area of Ghana.</p>
+        <p>Inspired by the vision and leadership of His Royal Majesty, Osagyefo Ampem Anye Amoapong Tabrako III, the
+          Foundation was established to promote unity, development, and shared prosperity among the people of
+          Wenchiman. Our work focuses on improving livelihoods, strengthening human capital, and unlocking the
+          socio-economic potential of the community through inclusive and locally driven development initiatives.</p>
+        <p>Osagyefo Ampem Foundation was established and legally incorporated as a non-profit Foundation in Ghana on
+          19th September 2024, in commemoration of the fifth anniversary of the enstoolment of His Royal Majesty,
+          Osagyefo Ampem Anye Amoapong Tabrako III, as Paramount Chief of the Wenchi Traditional Area.</p>
+        <div class="callout-btn-box"><a class="btn btn-border-w btn-circle" href="about.html">Read More</a></div>
       </div>
     </section>
     <div class="main showcase-page">
-      <section class="module-extra-small bg-dark" id="about">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-12 col-md-10 col-lg-9">
-              <div class="callout-text font-alt">
-                <h4 style="margin-top: 0px;">About Us</h4>
-                <p>The Osagyefo Ampem Foundation is a community-focused non-profit organization dedicated to advancing
-                  sustainable development within the Wenchi Traditional Area of Ghana.</p>
-                <p>Inspired by the vision and leadership of His Royal Majesty, Osagyefo Ampem Anye Amoapong Tabrako III,
-                  the Foundation was established to promote unity, development, and shared prosperity among the people
-                  of Wenchiman. Our work focuses on improving livelihoods, strengthening human capital, and unlocking
-                  the socio-economic potential of the community through inclusive and locally driven development
-                  initiatives.</p>
-                <p>Osagyefo Ampem Foundation was established and legally incorporated as a non-profit Foundation in
-                  Ghana on 19th September 2024, in commemoration of the fifth anniversary of the enstoolment of His
-                  Royal Majesty, Osagyefo Ampem Anye Amoapong Tabrako III, as Paramount Chief of the Wenchi Traditional
-                  Area.</p>
-                <div class="callout-btn-box"><a class="btn btn-border-w btn-circle" href="about.html">Read More</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
       <section class="module" id="program">
         <div class="container">
           <div class="row">
@@ -268,6 +319,71 @@
   <script src="assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
   <script src="assets/js/plugins.js"></script>
   <script src="assets/js/main.js"></script>
+  <script>
+    (function () {
+      var hero = document.getElementById('home');
+      var trigger = document.querySelector('.section-scroll');
+
+      if (!hero) {
+        return;
+      }
+
+      function activateHeroStory() {
+        hero.classList.add('hero-story-active');
+      }
+
+      function deactivateHeroStory() {
+        hero.classList.remove('hero-story-active');
+      }
+
+      if (trigger) {
+        trigger.addEventListener('click', function (event) {
+          event.preventDefault();
+          activateHeroStory();
+        });
+      }
+
+      window.addEventListener('wheel', function (event) {
+        if (!hero.classList.contains('hero-story-active') && event.deltaY > 0 && window.scrollY <= 5) {
+          event.preventDefault();
+          activateHeroStory();
+          return;
+        }
+
+        if (hero.classList.contains('hero-story-active') && event.deltaY < 0 && window.scrollY <= 5) {
+          event.preventDefault();
+          deactivateHeroStory();
+        }
+      }, { passive: false });
+
+      var touchStartY = 0;
+      window.addEventListener('touchstart', function (event) {
+        if (event.touches.length) {
+          touchStartY = event.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      window.addEventListener('touchmove', function (event) {
+        if (!event.touches.length) {
+          return;
+        }
+
+        var currentY = event.touches[0].clientY;
+        var deltaY = touchStartY - currentY;
+
+        if (!hero.classList.contains('hero-story-active') && deltaY > 8 && window.scrollY <= 5) {
+          event.preventDefault();
+          activateHeroStory();
+          return;
+        }
+
+        if (hero.classList.contains('hero-story-active') && deltaY < -8 && window.scrollY <= 5) {
+          event.preventDefault();
+          deactivateHeroStory();
+        }
+      }, { passive: false });
+    })();
+  </script>
 </body>
 
 </html>
