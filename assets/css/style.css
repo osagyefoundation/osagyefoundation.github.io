@@ -3888,6 +3888,21 @@ Google map
   width: 100%;
 }
 
+.thematic-quote {
+  margin-top: 22px;
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0c1419;
+}
+
+.thematic-quote-author {
+  display: block;
+  margin-top: 8px;
+  font-weight: 700;
+  color: #0c1419;
+}
+
 .program-focus-icon {
   font-size: 36px;
   color: var(--exec-green);
