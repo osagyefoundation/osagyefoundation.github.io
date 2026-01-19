@@ -17,6 +17,42 @@ html {
   --exec-green-dark: #042306;
 }
 
+.navbar-brand.brand-with-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 22px;
+  line-height: 1.1;
+}
+
+.navbar-brand.brand-with-logo img {
+  height: 48px;
+  width: auto;
+  filter: drop-shadow(0 0 10px rgba(15, 109, 24, 0.55));
+  animation: logoFlipGlow 10s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.navbar-brand.brand-with-logo .brand-text {
+  font-size: 22px;
+}
+
+@keyframes logoFlipGlow {
+  0%,
+  42% {
+    transform: scaleX(1);
+  }
+
+  50% {
+    transform: scaleX(-1);
+  }
+
+  58%,
+  100% {
+    transform: scaleX(1);
+  }
+}
+
 body {
   background: #fff;
   font: 400 16px/1.75 "Open Sans", sans-serif;

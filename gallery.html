@@ -51,6 +51,68 @@
   <!-- Main stylesheet and color file-->
   <link href="assets/css/style.css" rel="stylesheet">
   <link id="color-scheme" href="assets/css/colors/default.css" rel="stylesheet">
+  <style>
+    /* Gallery carousel (mirrors projects carousel behavior) */
+    .gallery-filter-pills {
+      margin-top: 32px;
+      justify-content: center;
+    }
+
+    .gallery-carousel {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 20px 12px 40px;
+      scroll-behavior: smooth;
+      align-items: center;
+    }
+
+    .gallery-carousel::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .gallery-carousel::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+    }
+
+    .gallery-slide {
+      flex: 0 0 clamp(320px, 52vw, 720px);
+      scroll-snap-align: center;
+      transition: transform 0.45s ease, opacity 0.45s ease, box-shadow 0.45s ease;
+      transform: scale(0.9);
+      opacity: 0.65;
+    }
+
+    .gallery-slide.is-active {
+      transform: scale(1.08);
+      opacity: 1;
+      box-shadow: 0 30px 70px rgba(5, 15, 20, 0.35);
+    }
+
+    .gallery-slide a {
+      display: block;
+    }
+
+    .gallery-slide img {
+      width: 100%;
+      display: block;
+      height: clamp(260px, 55vh, 540px);
+      object-fit: cover;
+      border-radius: 26px;
+    }
+
+    .gallery-slide.is-hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 575px) {
+      .gallery-filter-pills {
+        justify-content: flex-start;
+      }
+    }
+  </style>
 </head>
 
 <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
@@ -63,7 +125,9 @@
         <div class="navbar-header">
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span
               class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
-              class="icon-bar"></span></button><a class="navbar-brand" href="index.html">Osagyefo Ampem Foundation</a>
+              class="icon-bar"></span></button><a class="navbar-brand brand-with-logo" href="index.html"><img
+              src="assets/images/wenchi1/Logo.png" alt="Osagyefo Ampem Foundation logo"><span
+              class="brand-text">Osagyefo Ampem Foundation</span></a>
         </div>
         <div class="collapse navbar-collapse" id="custom-collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -107,158 +171,85 @@
                 Ampem Foundation.</p>
             </div>
           </div>
-          <div class="gallery-pills" role="tablist" aria-label="Gallery filters">
-            <button type="button" class="gallery-pill active" data-filter="all">All Moments</button>
-            <button type="button" class="gallery-pill" data-filter="education">Education</button>
-            <button type="button" class="gallery-pill" data-filter="health">Health</button>
-            <button type="button" class="gallery-pill" data-filter="water">Water &amp; Sanitation</button>
-            <button type="button" class="gallery-pill" data-filter="entrepreneurship">Entrepreneurship &amp;
+          <div class="gallery-pills gallery-filter-pills" role="tablist" aria-label="Gallery filters">
+            <button type="button" class="gallery-pill active" data-project-filter="all">All Moments</button>
+            <button type="button" class="gallery-pill" data-project-filter="education">Education</button>
+            <button type="button" class="gallery-pill" data-project-filter="health">Health</button>
+            <button type="button" class="gallery-pill" data-project-filter="water">Water &amp; Sanitation</button>
+            <button type="button" class="gallery-pill" data-project-filter="entrepreneurship">Entrepreneurship &amp;
               Youth</button>
-            <button type="button" class="gallery-pill" data-filter="technology">Technology &amp; Innovation</button>
-            <button type="button" class="gallery-pill" data-filter="tourism">Culture &amp; Heritage</button>
+            <button type="button" class="gallery-pill" data-project-filter="technology">Technology &amp;
+              Innovation</button>
+            <button type="button" class="gallery-pill" data-project-filter="tourism">Culture &amp; Heritage</button>
           </div>
-          <div class="gallery-grid" id="galleryGrid">
-            <figure class="gallery-card" data-category="education">
-              <div class="gallery-card-media">
+          <div class="gallery-carousel" id="galleryCarousel" aria-label="Gallery carousel">
+            <div class="gallery-slide" data-category="education">
+              <a href="assets/images/wenchi1/execdirectortalk.jpg" target="_blank" rel="noopener noreferrer">
                 <img src="assets/images/wenchi1/execdirectortalk.jpg"
                   alt="Facilitator leads a mentorship dialogue with students">
-              </div>
-              <figcaption>
-                <p class="gallery-card-kicker">Education</p>
-                <h3>Mentorship Circles</h3>
-                <p>Senior mentors host after-school circles that connect brilliant-but-needy students with academic and
-                  career support.</p>
-                <a class="gallery-card-link" href="assets/images/wenchi1/execdirectortalk.jpg" target="_blank"
-                  rel="noopener noreferrer">Open high-resolution image</a>
-              </figcaption>
-            </figure>
-            <figure class="gallery-card" data-category="education">
-              <div class="gallery-card-media">
+              </a>
+            </div>
+            <div class="gallery-slide" data-category="education">
+              <a href="assets/images/wenchi1/execdirectortalk2.jpg" target="_blank" rel="noopener noreferrer">
                 <img src="assets/images/wenchi1/execdirectortalk2.jpg"
                   alt="Community educators host a planning session with youth">
-              </div>
-              <figcaption>
-                <p class="gallery-card-kicker">Education</p>
-                <h3>Learning Strategy Labs</h3>
-                <p>Teachers and community mobilizers co-create lesson refreshers before rolling out literacy bootcamps
-                  across Wenchi.</p>
-                <a class="gallery-card-link" href="assets/images/wenchi1/execdirectortalk2.jpg" target="_blank"
-                  rel="noopener noreferrer">Open high-resolution image</a>
-              </figcaption>
-            </figure>
-            <figure class="gallery-card" data-category="health">
-              <div class="gallery-card-media">
+              </a>
+            </div>
+            <div class="gallery-slide" data-category="health">
+              <a href="assets/images/gallery/wenchi/healthcare/health.jpg" target="_blank" rel="noopener noreferrer">
                 <img src="assets/images/gallery/wenchi/healthcare/health.jpg"
                   alt="Nurses provide blood pressure screening">
-              </div>
-              <figcaption>
-                <p class="gallery-card-kicker">Health Care</p>
-                <h3>Mobile Health Outreach</h3>
-                <p>Nurses and public health volunteers deliver screenings and preventive education across remote farming
-                  communities.</p>
-                <a class="gallery-card-link" href="assets/images/gallery/wenchi/healthcare/health.jpg" target="_blank"
-                  rel="noopener noreferrer">Open high-resolution image</a>
-              </figcaption>
-            </figure>
-            <figure class="gallery-card" data-category="water">
-              <div class="gallery-card-media">
+              </a>
+            </div>
+            <div class="gallery-slide" data-category="water">
+              <a href="assets/images/gallery/wenchi/sanitation_and_water/_MG_3430.jpg" target="_blank"
+                rel="noopener noreferrer">
                 <img src="assets/images/gallery/wenchi/sanitation_and_water/_MG_3430.jpg"
                   alt="Engineers inspect a rural water system">
-              </div>
-              <figcaption>
-                <p class="gallery-card-kicker">Water &amp; Sanitation</p>
-                <h3>Safe Water Commissioning</h3>
-                <p>Community leaders celebrate the completion of a rehabilitated borehole and hygiene education drive.
-                </p>
-                <a class="gallery-card-link" href="assets/images/gallery/wenchi/sanitation_and_water/_MG_3430.jpg"
-                  target="_blank" rel="noopener noreferrer">Open high-resolution image</a>
-              </figcaption>
-            </figure>
-            <figure class="gallery-card" data-category="water">
-              <div class="gallery-card-media">
+              </a>
+            </div>
+            <div class="gallery-slide" data-category="water">
+              <a href="assets/images/gallery/wenchi/sanitation_and_water/IMG-20241112-WA0020.jpg" target="_blank"
+                rel="noopener noreferrer">
                 <img src="assets/images/gallery/wenchi/sanitation_and_water/IMG-20241112-WA0020.jpg"
                   alt="Volunteers coordinate water trucking support">
-              </div>
-              <figcaption>
-                <p class="gallery-card-kicker">Water &amp; Sanitation</p>
-                <h3>Emergency Water Runs</h3>
-                <p>Rapid-response teams move potable water to drought-hit communities while permanent systems are built.
-                </p>
-                <a class="gallery-card-link"
-                  href="assets/images/gallery/wenchi/sanitation_and_water/IMG-20241112-WA0020.jpg" target="_blank"
-                  rel="noopener noreferrer">Open high-resolution image</a>
-              </figcaption>
-            </figure>
-            <figure class="gallery-card" data-category="entrepreneurship">
-              <div class="gallery-card-media">
+              </a>
+            </div>
+            <div class="gallery-slide" data-category="entrepreneurship">
+              <a href="assets/images/gallery/wenchi/wheels_for_change/_MG_8396.jpg" target="_blank"
+                rel="noopener noreferrer">
                 <img src="assets/images/gallery/wenchi/wheels_for_change/_MG_8396.jpg"
                   alt="Young artisans assemble adaptive tricycles">
-              </div>
-              <figcaption>
-                <p class="gallery-card-kicker">Entrepreneurship</p>
-                <h3>Inclusive Mobility Workshop</h3>
-                <p>Youth artisans refine fabrication skills while producing mobility aids that create livelihood
-                  pathways.</p>
-                <a class="gallery-card-link" href="assets/images/gallery/wenchi/wheels_for_change/_MG_8396.jpg"
-                  target="_blank" rel="noopener noreferrer">Open high-resolution image</a>
-              </figcaption>
-            </figure>
-            <figure class="gallery-card" data-category="entrepreneurship">
-              <div class="gallery-card-media">
+              </a>
+            </div>
+            <div class="gallery-slide" data-category="entrepreneurship">
+              <a href="assets/images/gallery/wenchi/wheels_for_change/_MG_8544.jpg" target="_blank"
+                rel="noopener noreferrer">
                 <img src="assets/images/gallery/wenchi/wheels_for_change/_MG_8544.jpg"
                   alt="Volunteers line up adaptive bikes for delivery">
-              </div>
-              <figcaption>
-                <p class="gallery-card-kicker">Entrepreneurship</p>
-                <h3>Wheels for Change</h3>
-                <p>Volunteer brigades prepare dozens of adaptive bikes, pairing mobility upgrades with business starter
-                  kits.</p>
-                <a class="gallery-card-link" href="assets/images/gallery/wenchi/wheels_for_change/_MG_8544.jpg"
-                  target="_blank" rel="noopener noreferrer">Open high-resolution image</a>
-              </figcaption>
-            </figure>
-            <figure class="gallery-card" data-category="technology">
-              <div class="gallery-card-media">
+              </a>
+            </div>
+            <div class="gallery-slide" data-category="technology">
+              <a href="assets/images/gallery/wenchi/wheels_for_change/_MG_8515.jpg" target="_blank"
+                rel="noopener noreferrer">
                 <img src="assets/images/gallery/wenchi/wheels_for_change/_MG_8515.jpg"
                   alt="Technicians calibrate assistive devices">
-              </div>
-              <figcaption>
-                <p class="gallery-card-kicker">Technology &amp; Innovation</p>
-                <h3>Assistive Tech Lab</h3>
-                <p>Fabricators prototype low-cost controls that make community transit more accessible for persons with
-                  disabilities.</p>
-                <a class="gallery-card-link" href="assets/images/gallery/wenchi/wheels_for_change/_MG_8515.jpg"
-                  target="_blank" rel="noopener noreferrer">Open high-resolution image</a>
-              </figcaption>
-            </figure>
-            <figure class="gallery-card" data-category="tourism">
-              <div class="gallery-card-media">
+              </a>
+            </div>
+            <div class="gallery-slide" data-category="tourism">
+              <a href="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0662.jpg" target="_blank"
+                rel="noopener noreferrer">
                 <img src="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0662.jpg"
                   alt="Cultural troupe performs traditional dance">
-              </div>
-              <figcaption>
-                <p class="gallery-card-kicker">Culture &amp; Heritage</p>
-                <h3>Heritage Festival</h3>
-                <p>Custodians of culture use storytelling, music, and dance to keep ancestral knowledge alive for the
-                  next generation.</p>
-                <a class="gallery-card-link" href="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0662.jpg"
-                  target="_blank" rel="noopener noreferrer">Open high-resolution image</a>
-              </figcaption>
-            </figure>
-            <figure class="gallery-card" data-category="tourism">
-              <div class="gallery-card-media">
+              </a>
+            </div>
+            <div class="gallery-slide" data-category="tourism">
+              <a href="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0514.jpg" target="_blank"
+                rel="noopener noreferrer">
                 <img src="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0514.jpg"
                   alt="Community elders lead a procession">
-              </div>
-              <figcaption>
-                <p class="gallery-card-kicker">Culture &amp; Heritage</p>
-                <h3>Procession of Unity</h3>
-                <p>Traditional authorities open the Abosomfie courtyard, inviting visitors to experience Wenchi's
-                  layered history.</p>
-                <a class="gallery-card-link" href="assets/images/gallery/wenchi/tourism_and_heritage/IMG_0514.jpg"
-                  target="_blank" rel="noopener noreferrer">Open high-resolution image</a>
-              </figcaption>
-            </figure>
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -350,29 +341,95 @@
   <script src="assets/js/main.js"></script>
   <script>
     (function () {
-      var pills = document.querySelectorAll('.gallery-pill');
-      var cards = document.querySelectorAll('.gallery-card');
+      var filterPills = document.querySelectorAll('[data-project-filter]');
+      var carousel = document.getElementById('galleryCarousel');
+      var slides = document.querySelectorAll('.gallery-slide');
 
-      function setFilter(filter) {
-        cards.forEach(function (card) {
-          var category = card.getAttribute('data-category');
-          var matches = filter === 'all' || category === filter;
-          card.classList.toggle('is-hidden', !matches);
+      if (!filterPills.length || !carousel || !slides.length) {
+        return;
+      }
+
+      function setActiveSlide() {
+        var visibleSlides = Array.prototype.filter.call(slides, function (slide) {
+          return !slide.classList.contains('is-hidden');
+        });
+
+        if (!visibleSlides.length) {
+          return;
+        }
+
+        var center = carousel.scrollLeft + carousel.clientWidth / 2;
+        var closest = visibleSlides[0];
+        var closestDistance = Infinity;
+
+        visibleSlides.forEach(function (slide) {
+          var slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+          var distance = Math.abs(center - slideCenter);
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closest = slide;
+          }
+        });
+
+        slides.forEach(function (slide) {
+          slide.classList.toggle('is-active', slide === closest);
         });
       }
 
-      pills.forEach(function (pill) {
+      function applyFilter(filter) {
+        slides.forEach(function (slide) {
+          var category = slide.getAttribute('data-category');
+          var matches = filter === 'all' || category === filter;
+          slide.classList.toggle('is-hidden', !matches);
+        });
+
+        requestAnimationFrame(setActiveSlide);
+      }
+
+      var scheduled = false;
+      function handleScroll() {
+        if (scheduled) {
+          return;
+        }
+        scheduled = true;
+        requestAnimationFrame(function () {
+          scheduled = false;
+          setActiveSlide();
+        });
+      }
+
+      carousel.addEventListener('scroll', handleScroll);
+      window.addEventListener('resize', handleScroll);
+
+      if (window.matchMedia('(hover: hover)').matches) {
+        slides.forEach(function (slide) {
+          slide.addEventListener('mouseenter', function () {
+            if (slide.classList.contains('is-hidden')) {
+              return;
+            }
+
+            var activeSlide = carousel.querySelector('.gallery-slide.is-active');
+            if (!activeSlide || activeSlide === slide) {
+              return;
+            }
+
+            slide.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          });
+        });
+      }
+
+      filterPills.forEach(function (pill) {
         pill.addEventListener('click', function () {
-          pills.forEach(function (p) {
+          filterPills.forEach(function (p) {
             p.classList.remove('active');
           });
           pill.classList.add('active');
-          setFilter(pill.getAttribute('data-filter'));
+          applyFilter(pill.getAttribute('data-project-filter'));
         });
       });
 
-      // Ensure cards are visible on initial load, including on browsers that skip IntersectionObserver.
-      setFilter('all');
+      applyFilter('all');
+      setActiveSlide();
     })();
   </script>
 </body>

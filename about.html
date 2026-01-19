@@ -96,6 +96,44 @@
       transform: scale(0.7);
       opacity: 0.65;
     }
+
+    .board-copy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .board-copy-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 18px 18px 20px;
+      text-align: center;
+      box-shadow: 0 16px 36px rgba(2, 8, 12, 0.12);
+    }
+
+    .board-copy-card img {
+      width: 100%;
+      max-width: 180px;
+      border-radius: 18px;
+      margin: 0 auto 14px;
+      display: block;
+    }
+
+    .board-copy-name {
+      font-size: 16px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 0 0 6px;
+    }
+
+    .board-copy-role {
+      color: #777777;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 0;
+    }
   </style>
 </head>
 
@@ -109,7 +147,9 @@
         <div class="navbar-header">
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span
               class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
-              class="icon-bar"></span></button><a class="navbar-brand" href="index.html">Osagyefo Ampem Foundation</a>
+              class="icon-bar"></span></button><a class="navbar-brand brand-with-logo" href="index.html"><img
+              src="assets/images/wenchi1/Logo.png" alt="Osagyefo Ampem Foundation logo"><span
+              class="brand-text">Osagyefo Ampem Foundation</span></a>
         </div>
         <div class="collapse navbar-collapse" id="custom-collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -214,7 +254,7 @@
                     alt="Portrait of Osagyefo Ampem Anye Amoampong Tabrako III" loading="lazy" />
                 </div>
                 <div class="board-meta">
-                  <p class="board-role">Patron &amp; Board Chairman</p>
+                  <p class="board-role">Patron &amp</p>
                   <p class="board-name">Osagyefo Ampem Anye Amoampong Tabrako III</p>
                   <p class="board-title">Paramount Chief of the Wenchi Traditional Area</p>
                 </div>
@@ -225,9 +265,20 @@
                     loading="lazy" />
                 </div>
                 <div class="board-meta">
-                  <p class="board-role">Executive Director / CEO</p>
+                  <p class="board-role">Executive Director</p>
                   <p class="board-name">Thomas Raphael Affare</p>
                   <p class="board-title">Executive Management Lead</p>
+                </div>
+              </button>
+              <button type="button" class="board-card" data-member="chairman">
+                <div class="board-image">
+                  <img src="assets/images/wenchi1/male_profile.png" alt="Portrait of the Board Chairman"
+                    loading="lazy" />
+                </div>
+                <div class="board-meta">
+                  <p class="board-role">Board Chairman</p>
+                  <p class="board-name">Board Chairman</p>
+                  <p class="board-title">Governance &amp; Oversight</p>
                 </div>
               </button>
             </div>
@@ -256,19 +307,48 @@
           <div class="board-copy">
             <div class="board-copy-block">
               <h3 class="font-alt">Board &amp; Advisory Team</h3>
-              <ul class="board-list">
-                <li>Board Chairman - (Bio to be inserted)</li>
-                <li>Education Consultant</li>
-                <li>Health Consultant</li>
-                <li>Tourism &amp; Culture Consultant</li>
-                <li>Technology &amp; ICT Consultant</li>
-                <li>Construction &amp; Projects Consultant</li>
-                <li>Director of Finance</li>
-                <li>Independent Board Members - 2</li>
-              </ul>
-              <p>The Foundation is guided by a governance structure that ensures strategic oversight, accountability,
-                and
-                effective delivery of its mandate.</p>
+              <div class="board-copy-grid">
+                <div class="board-copy-card">
+                  <img src="assets/images/wenchi1/male_profile.png" alt="Board Chairman">
+                  <p class="board-copy-name">Mr. Board Chairman</p>
+                  <p class="board-copy-role">Board Chairman</p>
+                </div>
+                <div class="board-copy-card">
+                  <img src="assets/images/wenchi1/female_profile.png" alt="Education Consultant">
+                  <p class="board-copy-name">Miss. Education Consultant</p>
+                  <p class="board-copy-role">Education Consultant</p>
+                </div>
+                <div class="board-copy-card">
+                  <img src="assets/images/wenchi1/male_profile.png" alt="Health Consultant">
+                  <p class="board-copy-name">Mr. Health Consultant</p>
+                  <p class="board-copy-role">Health Consultant</p>
+                </div>
+                <div class="board-copy-card">
+                  <img src="assets/images/wenchi1/female_profile.png" alt="Tourism and Culture Consultant">
+                  <p class="board-copy-name">Miss. Tourism &amp; Culture Consultant</p>
+                  <p class="board-copy-role">Tourism &amp; Culture Consultant</p>
+                </div>
+                <div class="board-copy-card">
+                  <img src="assets/images/wenchi1/male_profile.png" alt="Technology and ICT Consultant">
+                  <p class="board-copy-name">Mr. Technology &amp; ICT Consultant</p>
+                  <p class="board-copy-role">Technology &amp; ICT Consultant</p>
+                </div>
+                <div class="board-copy-card">
+                  <img src="assets/images/wenchi1/male_profile.png" alt="Construction and Projects Consultant">
+                  <p class="board-copy-name">Mr. Construction &amp; Projects Consultant</p>
+                  <p class="board-copy-role">Construction &amp; Projects Consultant</p>
+                </div>
+                <div class="board-copy-card">
+                  <img src="assets/images/wenchi1/female_profile.png" alt="Director of Finance">
+                  <p class="board-copy-name">Miss. Director of Finance</p>
+                  <p class="board-copy-role">Director of Finance</p>
+                </div>
+                <div class="board-copy-card">
+                  <img src="assets/images/wenchi1/male_profile.png" alt="Independent Board Members">
+                  <p class="board-copy-name">Mr. Independent Board Members</p>
+                  <p class="board-copy-role">Independent Board Members</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -382,6 +462,16 @@
             "Thomas Raphael Affare is the Executive Director and CEO of the Osagyefo Ampem Foundation, leading the Foundation's mission to improve livelihoods and drive sustainable development within the Wenchi Traditional Area.",
             "With extensive experience in organizational leadership, operations management, and stakeholder engagement, he oversees the design and implementation of community-driven programs in education, health, water and sanitation, entrepreneurship, technology, and cultural preservation.",
             "Mr. Affare holds a degree in Psychology and Theatre Arts from the University of Ghana and brings a people-centered approach to development, emphasizing accountability, local ownership, and measurable impact. He works closely with traditional authorities, partners, and community stakeholders to advance a united, thriving, and empowered Wenchi."
+          ]
+        },
+        chairman: {
+          role: "Board Chairman",
+          name: "Board Chairman",
+          title: "Governance & Oversight",
+          copy: [
+            "The Board Chairman provides strategic leadership and ensures the Foundation's mission stays aligned with community priorities.",
+            "He guides governance, risk oversight, and accountability, supporting the executive team in delivering measurable impact.",
+            "Working closely with advisors and partners, the Chairman champions transparency and long-term sustainability across all programs."
           ]
         }
       };
