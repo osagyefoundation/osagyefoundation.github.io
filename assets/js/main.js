@@ -50,6 +50,35 @@ console.log(
       width = Math.max($(window).width(), window.innerWidth),
       mobileTest = false;
 
+    (function setSiteFavicon() {
+      var faviconHref = "/assets/images/wenchi1/Logo.png";
+      var head = document.head || document.getElementsByTagName("head")[0];
+
+      if (!head) {
+        return;
+      }
+
+      var existingIcons = head.querySelectorAll(
+        'link[rel~="icon"], link[rel="shortcut icon"]',
+      );
+
+      existingIcons.forEach(function (node) {
+        head.removeChild(node);
+      });
+
+      var icon = document.createElement("link");
+      icon.rel = "icon";
+      icon.type = "image/png";
+      icon.href = faviconHref;
+      head.appendChild(icon);
+
+      var shortcutIcon = document.createElement("link");
+      shortcutIcon.rel = "shortcut icon";
+      shortcutIcon.type = "image/png";
+      shortcutIcon.href = faviconHref;
+      head.appendChild(shortcutIcon);
+    })();
+
     if (
       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
         navigator.userAgent,
