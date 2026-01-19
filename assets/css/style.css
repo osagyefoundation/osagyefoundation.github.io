@@ -17,6 +17,63 @@ html {
   --exec-green-dark: #042306;
 }
 
+.hero-text-panel {
+  background: rgba(4, 12, 8, 0.78);
+  border-radius: 24px;
+  padding: 28px 30px 26px;
+  color: #ffffff;
+  box-shadow: 0 30px 70px rgba(5, 15, 20, 0.35);
+}
+
+.hero-text-panel .module-subtitle,
+.hero-text-panel p,
+.hero-text-panel h2,
+.hero-text-panel .section-label {
+  color: inherit;
+}
+
+.full-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.full-hero .hero-text-panel {
+  width: min(920px, 90%);
+  margin: 0 auto;
+}
+
+.full-hero .module-title {
+  font-size: clamp(28px, 3.4vw, 44px);
+}
+
+.full-hero .module-subtitle,
+.full-hero p,
+.full-hero .section-label {
+  font-size: clamp(14px, 1.6vw, 18px);
+}
+
+.hero-text-panel.compact-hero {
+  max-height: calc(100vh - 140px);
+  overflow: auto;
+}
+
+.hero-text-panel.compact-hero .module-title {
+  font-size: clamp(24px, 3vw, 36px);
+}
+
+.hero-text-panel.compact-hero .module-subtitle,
+.hero-text-panel.compact-hero p,
+.hero-text-panel.compact-hero .section-label {
+  font-size: clamp(13px, 1.4vw, 16px);
+}
+
+@media (max-width: 767px) {
+  .hero-text-panel {
+    padding: 20px 20px 18px;
+  }
+}
+
 .navbar-brand.brand-with-logo {
   display: inline-flex;
   align-items: center;
@@ -3795,6 +3852,14 @@ Google map
   font-size: 18px;
   letter-spacing: 2px;
   margin: 0;
+}
+
+.program-focus-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-top: 6px;
 }
 
 .program-focus-card p {
