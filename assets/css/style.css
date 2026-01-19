@@ -94,6 +94,36 @@ html {
   font-size: 22px;
 }
 
+@media (min-width: 992px) {
+  .navbar-custom {
+    padding: 14px 0;
+  }
+
+  .navbar-custom .navbar-brand {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .navbar-brand.brand-with-logo {
+    gap: 16px;
+    font-size: 26px;
+    line-height: 1.2;
+  }
+
+  .navbar-brand.brand-with-logo img {
+    height: 70px;
+  }
+
+  .navbar-brand.brand-with-logo .brand-text {
+    font-size: 26px;
+  }
+
+  .navbar-custom .nav > li > a {
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+}
+
 @keyframes logoFlipGlow {
   0%,
   42% {
