@@ -55,6 +55,14 @@ console.log(
         ? "../assets"
         : "assets";
 
+    var enableSiteNoticePopup = true;
+
+    var siteNoticeMessage =
+      "This website is currently under development and review.\n" +
+      "Final deployment is pending completion of closure procedures.\n" +
+      "Some features may be incomplete or restricted.\n" +
+      "Please use with caution.";
+
     (function setSiteFavicon() {
       var faviconHref = assetRoot + "/images/branding/logo.png";
       var head = document.head || document.getElementsByTagName("head")[0];
@@ -82,6 +90,92 @@ console.log(
       shortcutIcon.type = "image/png";
       shortcutIcon.href = faviconHref;
       head.appendChild(shortcutIcon);
+    })();
+
+    (function initSiteNoticePopup() {
+      if (!enableSiteNoticePopup) {
+        return;
+      }
+
+      if (document.getElementById("site-notice-overlay")) {
+        return;
+      }
+
+      var head = document.head || document.getElementsByTagName("head")[0];
+      if (!head) {
+        return;
+      }
+
+      var style = document.createElement("style");
+      style.type = "text/css";
+      style.textContent =
+        ".site-notice-overlay{" +
+        "position:fixed;inset:0;z-index:10000;background:rgba(5,10,8,0.7);" +
+        "display:flex;align-items:center;justify-content:center;padding:24px;" +
+        "}" +
+        ".site-notice-card{" +
+        "max-width:620px;width:100%;background:#0c1712;color:#fff;" +
+        "border-radius:18px;padding:24px 26px;box-shadow:0 30px 70px rgba(5,15,20,0.45);" +
+        "}" +
+        ".site-notice-card h4{" +
+        "margin:0 0 12px;font-size:22px;font-weight:600;" +
+        "}" +
+        ".site-notice-card p{" +
+        "margin:0 0 18px;line-height:1.6;white-space:pre-line;" +
+        "}" +
+        ".site-notice-actions{" +
+        "display:flex;justify-content:flex-end;gap:12px;" +
+        "}" +
+        ".site-notice-close{" +
+        "border:1px solid #fff;background:transparent;color:#fff;padding:8px 18px;" +
+        "border-radius:999px;font-weight:600;cursor:pointer;" +
+        "}" +
+        ".site-notice-close:hover{" +
+        "background:#ffffff;color:#0c1712;" +
+        "}";
+      head.appendChild(style);
+
+      var overlay = document.createElement("div");
+      overlay.id = "site-notice-overlay";
+      overlay.className = "site-notice-overlay";
+      overlay.innerHTML =
+        '<div class="site-notice-card" role="dialog" aria-modal="true" aria-label="Site notice">' +
+        "<h4>Notice</h4>" +
+        "<p>" +
+        siteNoticeMessage +
+        "</p>" +
+        '<div class="site-notice-actions">' +
+        '<button type="button" class="site-notice-close">Close</button>' +
+        "</div>" +
+        "</div>";
+
+      document.body.appendChild(overlay);
+      var previousOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+
+      function closeNotice() {
+        if (overlay && overlay.parentNode) {
+          overlay.parentNode.removeChild(overlay);
+        }
+        document.body.style.overflow = previousOverflow;
+      }
+
+      var closeButton = overlay.querySelector(".site-notice-close");
+      if (closeButton) {
+        closeButton.addEventListener("click", closeNotice);
+      }
+
+      overlay.addEventListener("click", function (event) {
+        if (event.target === overlay) {
+          closeNotice();
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          closeNotice();
+        }
+      });
     })();
 
     if (
