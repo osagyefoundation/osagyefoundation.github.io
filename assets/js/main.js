@@ -103,6 +103,40 @@ console.log(
       navbarAnimation(navbar, homeSection, navHeight);
     });
 
+    (function initHeroScrollReveal() {
+      var hero = document.querySelector(".hero-viewport");
+      if (!hero || hero.id === "home") {
+        return;
+      }
+
+      var title = hero.querySelector(".module-title");
+      if (!title) {
+        return;
+      }
+
+      var textWrap = title.closest(".hero-text-panel") || title.parentElement;
+      if (!textWrap) {
+        return;
+      }
+
+      Array.prototype.forEach.call(textWrap.children, function (child) {
+        if (child !== title) {
+          child.classList.add("hero-scroll-content");
+        }
+      });
+
+      hero.classList.add("hero-scroll-collapsed");
+
+      function revealOnScroll() {
+        if (window.scrollY > 5) {
+          hero.classList.remove("hero-scroll-collapsed");
+        }
+      }
+
+      revealOnScroll();
+      window.addEventListener("scroll", revealOnScroll, { passive: true });
+    })();
+
     /* ---------------------------------------------- /*
          * Set sections backgrounds
          /* ---------------------------------------------- */
