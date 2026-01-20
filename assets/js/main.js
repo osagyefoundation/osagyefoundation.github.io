@@ -55,7 +55,7 @@ console.log(
         ? "../assets"
         : "assets";
 
-    var enableSiteNoticePopup = true;
+    var enableSiteNoticePopup = false;
 
     var siteNoticeMessage =
       "This website is currently under development and review.\n" +
